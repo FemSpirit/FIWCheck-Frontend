@@ -1,5 +1,5 @@
 {
-  "name": "fiwcheck-frontend",
+  "name": "FIWCheck-Frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:fiwcheck-frontend": "node dist/fiwcheck-frontend/server/server.mjs"
+    "serve:ssr:FIWCheck-Frontend": "node dist/FIWCheck-Frontend/server/server.mjs"
   },
   "private": true,
   "packageManager": "npm@11.19.1",
