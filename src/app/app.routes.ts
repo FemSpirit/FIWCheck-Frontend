@@ -7,7 +7,7 @@ import {Stupo} from './stupo/stupo';
 import {Statistikstudi} from './statistikstudi/statistikstudi';
 import {Statistikprof} from './statistikprof/statistikprof';
 import {Login} from './login/login';
-import {Register} from './register/register';
+import {Registrierung} from './registrierung/registrierung';
 import {Einstellungen} from './einstellungen/einstellungen';
 
 export const routes: Routes = [
@@ -19,7 +19,7 @@ export const routes: Routes = [
     {path: 'statistikstudi', component: Statistikstudi},
     {path: 'statistikprof', component: Statistikprof},
     {path: 'login', component: Login},
-    {path: 'register', component: Register},
+    {path: 'registrierung', component: Registrierung},
     {path: 'einstellungen', component: Einstellungen}
 
 ];
