@@ -1,12 +1,12 @@
 import {Routes} from '@angular/router';
-import {Sidebar} from './sidebar/sidebar';
+import {SidebarComponent} from './sidebar/sidebar';
 import {Startseite } from './startseite/startseite';
 import {Profil} from './profil/profil';
 import {Stundenplan} from './stundenplan/stundenplan';
 import {Moduluebersicht} from './moduluebersicht/moduluebersicht';
 import {Stupo} from './stupo/stupo';
 import {Kalender} from './kalender/kalender';
-import { Tipps } from './tipps/tipps';
+import {Tipps} from './tipps/tipps';
 import {Statistikstudi} from './statistikstudi/statistikstudi';
 import {Statistikprof} from './statistikprof/statistikprof';
 import {Login} from './login/login';
@@ -15,7 +15,7 @@ import {Einstellungen} from './einstellungen/einstellungen';
 
 export const routes: Routes = [
     {path: '', component: Startseite},
-    {path: 'sidebar', component: Sidebar},
+    {path: 'sidebar', component: SidebarComponent},
     {path: 'startseite', component: Startseite},
     {path: 'profil', component: Profil},
     {path: 'stundenplan', component: Stundenplan},

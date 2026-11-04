@@ -1,1 +1,45 @@
-<p>sidebar works!</p>
+<aside class="sidebar" [class.collapsed]="isCollapsed()">
+
+    <div class="sidebar-header">
+        <button class="toggle-btn" aria-label="Menü ein-/ausklappen" (click)="toggleSidebar()">
+            <span class="material-icons">menu</span>
+        </button>
+
+        <div class="logo-container">
+            @if (!isCollapsed()) {
+            <img src="assets/images/katzefiwilogo.png" alt="FIWCheck Logo" class="logo-img" />
+            <span class="logo-text">FIWCheck</span>
+            }
+
+        </div>
+    </div>
+
+    <nav class="nav-section main-nav">
+        @for (item of mainNavItems; track item.route) {
+        <a [routerLink]="item.route" routerLinkActive="active" class="nav-item">
+            <span class="material-icons">{{ item.icon }}</span>
+            @if (!isCollapsed()) {
+            <span class="label">{{ item.label }}</span>
+            }
+        </a>
+        }
+    </nav>
+
+    <div class="nav-section bottom-nav">
+        @for (item of bottomNavItems; track item.route) {
+        <a [routerLink]="item.route" routerLinkActive="active" class="nav-item">
+            <span class="material-icons">{{ item.icon }}</span>
+            @if (!isCollapsed()) {
+            <span class="label">{{ item.label }}</span>
+            }
+        </a>
+        }
+
+            <button class="nav-item logout-btn" (click)="onLogout()">
+            <span class="material-icons">logout</span>
+            @if (!isCollapsed()) {
+            <span class="label">Log Out</span>
+            }
+        </button>
+    </div>
+</aside>
