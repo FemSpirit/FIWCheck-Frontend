@@ -6,19 +6,10 @@
     "analytics": false
   },
   "newProjectRoot": "projects",
-  "schematics": {
-    "@schematics/angular:component": {
-      "style": "css"
-    }
-  },
   "projects": {
     "FIWCheck-Frontend": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "css"
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -28,7 +19,6 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "css",
             "assets": [
               {
                 "glob": "**/*",
@@ -42,7 +32,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/app/app.css"
+              "src/app/app.css",
+              "src/material-theme.scss"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",

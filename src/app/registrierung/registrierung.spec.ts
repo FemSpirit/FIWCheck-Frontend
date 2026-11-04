@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Registrierung } from './registrierung';
+import { ReactiveFormsModule } from '@angular/forms';
+import{NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('Registrierung', () => {
   let component: Registrierung;
@@ -7,7 +9,11 @@ describe('Registrierung', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Registrierung],
+      imports: [
+        Registrierung
+      , ReactiveFormsModule, 
+      NoopAnimationsModule
+    ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Registrierung);

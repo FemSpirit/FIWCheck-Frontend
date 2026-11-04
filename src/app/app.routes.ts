@@ -26,7 +26,7 @@ export const routes: Routes = [
     {path: 'statistikstudi', component: Statistikstudi},
     {path: 'statistikprof', component: Statistikprof},
     {path: 'login', component: Login},
-    {path: 'registrierung', component: Registrierung},
+    {path: 'registrierungsformular', component: Registrierung},
     {path: 'einstellungen', component: Einstellungen}
 
 ];
