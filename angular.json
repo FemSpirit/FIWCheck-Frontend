@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "polyfills": ["zone.js"],
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -30,11 +31,7 @@
                 "output": "/assets"
               }
             ],
-            "styles": [
-              "src/styles.css",
-              "src/app/app.css",
-              "src/material-theme.scss"
-            ],
+            "styles": ["src/styles.css", "src/app/app.css", "src/material-theme.scss"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
