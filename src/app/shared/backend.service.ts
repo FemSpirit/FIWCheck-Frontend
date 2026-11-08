@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {User } from './user';
+import {User, LoginRequest,LoginResponse } from './user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
 
+    private loginUrl = 'http://localhost:8080/user/login';
     private apiUrl = 'http://localhost:8080/api/register';
   constructor() { }
 
@@ -28,5 +29,29 @@ export class BackendService {
     catch (error) {
         console.error('Fehler bei der Registrierung:', error);  
     }
+  }
+
+  async loginUser(credentials: LoginRequest): Promise<LoginResponse> {
+    const response = await fetch(this.loginUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+    });
+
+    // falls Status 401 zurückkommt dann fehler in login.ts werfen
+    if (!response.ok) {
+      throw new Error('Login fehlgeschlagen. Bitte überprüfe deine Zugangsdaten.');
+    }
+
+    const data: LoginResponse = await response.json();
+
+    // jwt im localStorage speichern
+    if (data && data.token) {
+      localStorage.setItem('token', data.token);
+    }
+
+    return data;
   }
 }
