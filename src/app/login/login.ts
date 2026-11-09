@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { BackendService } from '../shared/backend.service';
+import { AuthService } from '../shared/auth.service';
 import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -15,7 +16,7 @@ export class Login {
   errorMessage: string = '';
 
   constructor(
-    private backendService: BackendService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -27,18 +28,23 @@ export class Login {
       return;
     }
 
-    try {
-      // Ruft Methode aus BackendService auf
-      await this.backendService.loginUser({
-        email: this.email,
-        password: this.password,
-      });
+    this.authService.loginUser(
+      this.email, this.password).subscribe({
+        //veravreitet Server Antwort
+        next:(response: any) => {
+          const token = response.body?.token;
+          if (token){
+            localStorage.setItem('token', token);
+          }
+          //leitet auf startseite
+          this.router.navigate(['/startseite']);
+        },
+        error: (error: any) => {
+          console.error('Login-Fehler:', error);
+          this.errorMessage = error.message || 'Login fehlgeschlagen.';
+        }
+      } );
 
-      // Bei Erfolg zur Startseite weiterleiten
-      this.router.navigate(['/startseite']);
-    } catch (error: any) {
-      this.errorMessage = error.message || 'Login fehlgeschlagen.';
     }
-  }
-  
 }
+
