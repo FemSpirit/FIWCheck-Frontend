@@ -24,26 +24,12 @@
   gap: 12px;
 }
 
-/* .logo {
-  width: 45px;
-  height: 45px;
-} */
-
-/* .logo-img {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-
-
-} */
-
-
 .logo-img  {
-  width: 45px;           /* Breite und Höhe müssen exakt gleich sein */
+  width: 45px;           
   height: 45px;
-  border-radius: 50%;    /* Macht den Container perfekt rund */
-  object-fit: cover;     /* Verhindert, dass das Bild verzerrt wird */
-  background-color: white; /* Optional: Stellt sicher, dass der Hintergrund weiß bleibt */
+  border-radius: 50%;    
+  object-fit: cover;     
+  background-color: white; 
 }
 
 .subtitle {

@@ -2,9 +2,14 @@
   display: block;
   height: 100vh;
   flex-shrink: 0;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .sidebar {
+  position: relative;
+  left: 0;
+  margin-left: 0;
   width: 280px; /* Breiter gewählt wie im Mockup */
   height: 100%;
   background-color: #C6E273;
@@ -16,7 +21,8 @@
   overflow: hidden;
   white-space: nowrap;
   transition: width 0.3s ease, padding 0.3s ease;
-  border-radius: 12px 12px 12px 12px; /* Abgerundete Ecken auf der rechten Seite */
+  /* border-radius: 12px 12px 12px 12px; */ /* Abgerundete Ecken auf der rechten Seite */
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 .sidebar.collapsed {
@@ -42,10 +48,12 @@
   color: #1a1a1a;
 }
 
-.logo-img {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
+.logo-img  {
+  width: 45px;           /* Breite und Höhe müssen exakt gleich sein */
+  height: 45px;
+  border-radius: 50%;    /* Macht den Container perfekt rund */
+  object-fit: cover;     /* Verhindert, dass das Bild verzerrt wird */
+  background-color: white; /* Optional: Stellt sicher, dass der Hintergrund weiß bleibt */
 }
 
 .toggle-btn {

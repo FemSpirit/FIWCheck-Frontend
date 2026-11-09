@@ -32,7 +32,7 @@ export class SidebarComponent {
     { label: 'Profil', icon: 'person', route: '/profil' },
     { label: 'Stundenplan', icon: 'edit_calendar', route: '/stundenplan' },
     { label: 'Modulübersicht', icon: 'article', route: '/moduluebersicht' },
-    { label: 'Noten', icon: 'book', route: '/noten' },                          /* Noten doch weg?, habs erstmal drinnen gelassen */
+    /* { label: 'Noten', icon: 'book', route: '/noten' }, erstmal raus*/                          /* Noten doch weg?, habs erstmal drinnen gelassen */
     { label: 'Statistik', icon: 'trending_up', route: '/statistikstudi' },
     { label: 'Kalender', icon: 'calendar_today', route: '/kalender' }
   ];
