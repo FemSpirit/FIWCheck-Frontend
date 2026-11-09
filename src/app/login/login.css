@@ -1,0 +1,149 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f6ec;
+  font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+.card {
+  background-color: #c6e273;
+  border-radius: 12px;
+  padding: 30px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 24px rgba(60, 80, 50, 0.08)
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* .logo {
+  width: 45px;
+  height: 45px;
+} */
+
+/* .logo-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+
+
+} */
+
+
+.logo-img  {
+  width: 45px;           /* Breite und Höhe müssen exakt gleich sein */
+  height: 45px;
+  border-radius: 50%;    /* Macht den Container perfekt rund */
+  object-fit: cover;     /* Verhindert, dass das Bild verzerrt wird */
+  background-color: white; /* Optional: Stellt sicher, dass der Hintergrund weiß bleibt */
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #333;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.tab-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #F3C7;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tab-btn.active {
+  background-color: #7d7d7d;
+  color: white;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background-color: #9BC1DE;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.form-control.is-invalid {
+  border-color: #d9534f;
+}
+
+.error-message {
+  color: #d9534f;
+  margin-top: 4px;
+  padding-left: 10px;
+}
+
+.btn-submit {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  padding: 12px;
+  border: none;
+  border-radius: 20px;
+  background-color: #FBABAA;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.btn-submit:hover {
+  background-color: #FB96AA;
+}
+
+.footer-link {
+  font-size: 13px;
+  color: #333;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.footer-link a {
+  color: #0056b3;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.subtext {
+  font-size: 11px;
+  color: #666;
+  margin-top: 8px;
+  text-align: center;
+}
