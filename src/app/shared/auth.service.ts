@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class AuthService {
   baseUrl = environment.apiUrl;
-  user: User = {name: '', password: '', email: '', role: ''};
+  user: User = {username: '', password: '', email: '', role: ''};
   userChange: Subject<User> = new Subject<User>();
   loggedIn = false;
   loggedInChange: Subject<boolean> = new Subject<boolean>();
@@ -54,7 +54,7 @@ export class AuthService {
   logout(): void {
     this.loggedIn = false;
     this.loggedInChange.next(this.loggedIn);
-    this.user = {name: '', password: '', email: '', role: ''};
+    this.user = {username: '', password: '', email: '', role: ''};
     this.userChange.next(this.user);
   }
 
