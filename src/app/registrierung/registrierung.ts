@@ -41,7 +41,7 @@ export class Registrierung {
   public dialog = inject(MatDialog);
 
   registerForm = new FormGroup({
-    name: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     password2: new FormControl('', [Validators.required, Validators.minLength(8)]),
     email: new FormControl('', [
@@ -59,7 +59,7 @@ export class Registrierung {
 
   valid(): boolean {
     const check = 
-    !this.registerForm.controls['name'].hasError('required') &&
+    !this.registerForm.controls['username'].hasError('required') &&
     !this.registerForm.controls['password'].hasError('required') &&
     !this.registerForm.controls['password'].hasError('minlength') &&
     !this.registerForm.controls['password2'].hasError('required') &&
@@ -85,7 +85,7 @@ export class Registrierung {
   onSubmit(): void {
     const values = this.registerForm.value;
     this.user = {
-      name: values.name!,
+      username: values.username!,
       password: values.password!,
       email: values.email!,
       role: values.role!
@@ -106,8 +106,8 @@ export class Registrierung {
             if (backendErrors.email) {
               this.registerForm.controls['email'].setErrors({ serverError: backendErrors.email });
             }
-            if (backendErrors.name) {
-              this.registerForm.controls['name'].setErrors({ serverError: backendErrors.name });
+            if (backendErrors.username) {
+              this.registerForm.controls['username'].setErrors({ serverError: backendErrors.username });
             }
             if (backendErrors.password) {
               this.registerForm.controls['password'].setErrors({ serverError: backendErrors.password });

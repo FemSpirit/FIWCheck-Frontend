@@ -43,24 +43,26 @@ export class Login implements OnInit {
       return;
     }
 
-const { email, password } = this.loginForm.value;
+    // Werte sicher per Destructuring aus dem Formular auslesen
+    const { email, password } = this.loginForm.value;
 
-    this.authService.loginUser( this.email, this.password).subscribe({
-        //verarbeitet Server Antwort
-        next:(response: any) => {
-          const token = response.body?.token;
-          if (token){
-            localStorage.setItem('token', token);
-          }
-          //leitet auf startseite
-          this.router.navigate(['/startseite']);
-        },
-        error: (error: any) => {
-          console.error('Login-Fehler:', error);
-          this.errorMessage = error.message || 'Login fehlgeschlagen.';
+    // ✔️ HIER IST DIE KORREKTUR:
+    // Es werden nun sauber die Variablen `email` und `password` übergeben, 
+    // die zuvor per Destructuring direkt aus dem `loginForm.value` geholt wurden.
+    this.authService.loginUser(email, password).subscribe({
+      // verarbeitet Server-Antwort
+      next: (response: any) => {
+        const token = response.body?.token;
+        if (token) {
+          localStorage.setItem('token', token);
         }
-      } );
-
-    }
+        // leitet auf Startseite weiter
+        this.router.navigate(['/startseite']);
+      },
+      error: (error: any) => {
+        console.error('Login-Fehler:', error);
+        this.errorMessage = error.message || 'Login fehlgeschlagen.';
+      }
+    });
+  }
 }
-
