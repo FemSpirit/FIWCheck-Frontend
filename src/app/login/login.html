@@ -1,1 +1,62 @@
-<p>login works!</p>
+<div class="login-container">
+  <div class="card">
+    <!-- Header / Logo -->
+    <div class="header">
+      <img src="assets/images/katzefiwilogo.png" alt="FIWCheck Logo" class="logo-img" />
+      <h2>FIWCheck</h2>
+    </div>
+    <p class="subtitle">Plane dein Studium und behalte deinen Fortschritt im Blick</p>
+
+    <!-- Tab / Toggle Buttons 
+    <div class="tab-group">
+      <button class="tab-btn active">Anmelden</button>
+      <button class="tab-btn" routerLink="/register">Registrieren</button>
+    </div>-->
+
+    <!-- Login Formular -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      
+      <!-- HTW E-Mail Feld -->
+      <div class="form-group">
+        <label for="email">HTW E-Mail</label>
+        <input 
+          type="email" 
+          id="email" 
+          formControlName="email" 
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isSubmitted && f['email'].errors }"
+          placeholder="beispiel@htw-berlin.de"
+        />
+        <div *ngIf="isSubmitted && f['email'].errors" class="error-message">
+          <small *ngIf="f['email'].errors['required']">Bitte gib deine E-Mail-Adresse ein.</small>
+          <small *ngIf="f['email'].errors['email']">Bitte gib eine gültige E-Mail-Adresse ein.</small>
+        </div>
+      </div>
+
+      <!-- Passwort Feld -->
+      <div class="form-group">
+        <label for="password">Passwort</label>
+        <input 
+          type="password" 
+          id="password" 
+          formControlName="password" 
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isSubmitted && f['password'].errors }"
+        />
+        <div *ngIf="isSubmitted && f['password'].errors" class="error-message">
+          <small *ngIf="f['password'].errors['required']">Bitte gib dein Passwort ein.</small>
+        </div>
+      </div>
+
+      <!-- Anmelden Button -->
+      <button type="submit" class="btn-submit">Anmelden</button>
+    </form>
+
+    <!-- Footer / Registrieren Hinweistext -->
+    <div class="footer-link">
+        <span>Noch kein Konto? </span>
+        <a routerLink="/register">Hier registrieren</a>
+        <p class="subtext">Melde dich hier mit deiner HTW-E-Mail an.</p>
+    </div>
+  </div>
+</div>
