@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +11,15 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
+
 export class Login implements OnInit {
   loginForm!: FormGroup;
   isSubmitted = false;
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -33,12 +37,30 @@ export class Login implements OnInit {
 
   onSubmit(): void {
     this.isSubmitted = true;
+    this.errorMessage = '';
 
     if (this.loginForm.invalid) {
       return;
     }
 
-    console.log('Login-Daten:', this.loginForm.value);
-    // Hier folgt die Authentifizierung
-  }
+const { email, password } = this.loginForm.value;
+
+    this.authService.loginUser( this.email, this.password).subscribe({
+        //verarbeitet Server Antwort
+        next:(response: any) => {
+          const token = response.body?.token;
+          if (token){
+            localStorage.setItem('token', token);
+          }
+          //leitet auf startseite
+          this.router.navigate(['/startseite']);
+        },
+        error: (error: any) => {
+          console.error('Login-Fehler:', error);
+          this.errorMessage = error.message || 'Login fehlgeschlagen.';
+        }
+      } );
+
+    }
 }
+
