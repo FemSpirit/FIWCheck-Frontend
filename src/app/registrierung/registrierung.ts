@@ -40,6 +40,7 @@ export class Registrierung {
   private auth = inject(AuthService);
   public dialog = inject(MatDialog); //pop up von benachrichtigungen
 
+  
   registerForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
@@ -85,6 +86,7 @@ export class Registrierung {
   }
 
   onSubmit(): void {
+    
     const values = this.registerForm.value;
     this.user = {
       username: values.username!,
@@ -98,7 +100,7 @@ export class Registrierung {
       this.auth.registerUser(this.user).subscribe({
         next: (response) => {
           console.log('response', response);
-          this.openDialog({ headline: "Erfolg", info: "User " + response.name + " registriert!" });
+          this.openDialog({ headline: "Erfolg", info: "User " + response.username + " registriert!" });
         },
         error: (err) => {
           console.log('HttpErrorResponse : ', err);
