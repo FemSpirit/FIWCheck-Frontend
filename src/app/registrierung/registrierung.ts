@@ -13,7 +13,7 @@ import { AuthService } from '../shared/auth.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmComponent } from './confirm/confirm.component';
 
-export interface DialogData {
+export interface DialogData { //pop up dialog data interface
   headline: string;
   info: string;
 }
@@ -25,20 +25,20 @@ export interface DialogData {
   standalone: true,
   imports: [
     CommonModule,
-    MatIconModule,
+    MatIconModule, 
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatSelectModule,
+    MatSelectModule, 
     MatRadioModule,
     MatCardModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule, // Importiere ReactiveFormsModule für die Verwendung von FormGroup und FormControl
     MatDialogModule
   ]
 })
 export class Registrierung {
   private auth = inject(AuthService);
-  public dialog = inject(MatDialog);
+  public dialog = inject(MatDialog); //pop up von benachrichtigungen
 
   registerForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -49,6 +49,8 @@ export class Registrierung {
       Validators.email, 
       Validators.pattern('^[a-zA-Z0-9._%+-]+@(student\\.)?htw-berlin\\.de$')
     ]),
+
+
     role: new FormControl('', Validators.required)
   });
 
@@ -90,7 +92,7 @@ export class Registrierung {
       email: values.email!,
       role: values.role!
     };
-    console.log(this.user);
+    console.log(this.user); //entwicklertool: Ausgabe der User-Daten in der Konsole
     if(this.valid()) {
       console.log('eingaben gueltig! Registrierung wird vorgenommen');
       this.auth.registerUser(this.user).subscribe({
@@ -101,7 +103,7 @@ export class Registrierung {
         error: (err) => {
           console.log('HttpErrorResponse : ', err);
           
-          if (err.status === 400 && err.error) {
+          if (err.status === 400 && err.error) { //bad request, backend validation errors
             const backendErrors = err.error;
             if (backendErrors.email) {
               this.registerForm.controls['email'].setErrors({ serverError: backendErrors.email });
@@ -113,10 +115,10 @@ export class Registrierung {
               this.registerForm.controls['password'].setErrors({ serverError: backendErrors.password });
             }
           } else {
-            this.openDialog({ headline: "Fehler", info: "Diese E-Mail existiert bereits, bitte wähle eine andere" });
+            this.openDialog({ headline: "Fehler", info: "Diese Server ist im Moment nicht erreichbar, versuche es später erneut" });
           }
         },
-        complete: () => console.log('register completed')
+        complete: () => console.log('Registrierung erfolgreich abgeschlossen')
       });
     } else {
       console.log('eingaben ungueltig! Registrierung wird abgelehnt');
