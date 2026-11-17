@@ -24,7 +24,7 @@ export class Profil {
     studiendatenLocked: false // Frontend-Hilfsschalter: true = StuPO & Startsemester sind gesperrt
   };
 
-  avatarUrl = 'assets/default-avatar.png';
+  avatarUrl = 'assets/images/katzefiwilogo.png'; // Platzhalter-URL für das Profilbild
 
   // Dropdown-Auswahloptionen für das HTML-Formular
   stupoOptionen = ['StuPO 2024', 'StuPO 2014'];
@@ -32,7 +32,7 @@ export class Profil {
     { label: 'Vollzeit', value: true },
     { label: 'Teilzeit', value: false }
   ];
-  aweOptionen = ['Auswahl aus Liste', 'Fremdsprache', 'Freie Wahl'];
+  aweOptionen = ['Variante 1:Eine Sprache vertiefen + freie AWE', 'Variante 2: Zwei verschiedene Fremdsprachen', 'Variante 3: Eine Fremdsprache extrem vertiefen'];
   semesterOptionen = ['WiSe 2025/26', 'WiSe 2024/25', 'WiSe 2023/24', 'WiSe 2022/23', 'WiSe 2021/22', 'WiSe 2020/21', 'WiSe 2019/20', 'WiSe 2018/19', 'WiSe 2017/18', 'WiSe 2016/17', 'WiSe 2015/16', 'WiSe 2014/15'];
 
   showConfirmModal = false;
