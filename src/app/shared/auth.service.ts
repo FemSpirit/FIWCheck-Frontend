@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { User } from './user';
@@ -70,5 +70,27 @@ export class AuthService {
       return true;
     }
     return false;
+  }
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+  }
+  
+  getStudentprofil(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/studentprofil`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+  
+  updateStudieninformationen(daten: {
+    stupoId: number;
+    startsemester: number;
+    aweVariante: string;
+  }): Observable<any> {
+    return this.http.put(`${this.baseUrl}/studentprofil/studieninformationen`, daten, {
+      headers: this.getAuthHeaders()
+    });
   }
 }
