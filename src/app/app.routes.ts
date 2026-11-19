@@ -13,6 +13,7 @@ import {Login} from './login/login';
 import {Registrierung} from './registrierung/registrierung';
 import {Einstellungen} from './einstellungen/einstellungen';
 
+
 export const routes: Routes = [
     {path: '', component: Startseite},
     {path: 'sidebar', component: SidebarComponent},
