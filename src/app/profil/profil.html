@@ -1,1 +1,148 @@
-<p>profil works!</p>
+<div class="profil-page">
+  <div class="profil-header">
+    <div class="header-text">
+      <span class="breadcrumb">FIWCHECK / DEIN STUDIUM</span>
+      <h1>Profil</h1>
+      <p class="subtitle">Hier pflegst du deine persönlichen Studienangaben.</p>
+    </div>
+
+    <!-- Bereich für das runde Profilbild (192x192px) -->
+    <div class="avatar-section">
+      <img src="assets/images/katzefiwilogo.png" alt="Profilbild" class="avatar-img" />
+      <button type="button" class="avatar-edit-btn">Profilbild bearbeiten</button>
+    </div>
+  </div>
+
+  <div class="angaben-card">
+    <h2>Deine Angaben</h2>
+
+<!-- (ngSubmit)="onSaveClick()": Ruft beim Absenden des Formulars (Klick auf Speichern) die Methode in profil.ts auf -->
+    <form (ngSubmit)="onSaveClick()" class="angaben-form">
+
+
+      <!-- FELD 1: Name (aus der User-Tabelle im ER-Modell, bearbeitbar) -->
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          [(ngModel)]="profil.name"
+          name="name"
+          placeholder="Dein Name"
+          class="input-field"
+        />
+      </div>
+
+      <!-- FELD 2: HTW-Mail (aus der User-Tabelle, dauerhaft gesperrt) -->
+      <div class="form-group">
+        <label for="email">HTW-Mail</label>
+        
+        <!-- [value]: Wenn eine E-Mail geladen wurde, hänge " · gesperrt" an; sonst bleibt das Feld leer und zeigt den placeholder -->
+        <!-- disabled: Sperrt das Feld, sodass niemand die E-Mail ändern kann -->
+        <input
+          id="email"
+          type="text"
+          [value]="profil.email ? profil.email + ' · gesperrt' : ''"
+          placeholder="Wird aus deinem Account geladen · gesperrt"
+          disabled
+          class="input-field locked"
+        />
+      </div>
+
+      <!-- FELD 3: Studiengang (dauerhaft gesperrt) -->
+      <div class="form-group">
+        <label for="studiengang">Studiengang</label>
+        <input
+          id="studiengang"
+          type="text"
+          [value]="profil.studiengang ? profil.studiengang + ' · gesperrt' : ''"
+          placeholder="Informatik und Wirtschaft · gesperrt"
+          disabled
+          class="input-field locked"
+        />
+      </div>
+
+      <!-- FELD 4: StuPO (Beziehung: Student "studiert nach" Stupo) -->>
+      <div class="form-group">
+        <label for="stupo_id">StuPO</label>
+        <!-- [disabled]="profil.studiendatenLocked": Sperrt das Dropdown, sobald die Daten einmalig gespeichert wurden -->
+        <!-- [class.locked]: Fügt die CSS-Klasse "locked" hinzu (hellgrüner Hintergrund), wenn gesperrt -->
+        <select
+          id="stupo_id"
+          [(ngModel)]="profil.stupo_id"
+          name="stupo_id"
+          [disabled]="profil.studiendatenLocked"
+          [class.locked]="profil.studiendatenLocked"
+          class="input-field"
+        >
+          <!-- Platzhalter-Option, solange noch nichts ausgewählt wurde -->
+          <option value="" disabled>Bitte StuPO auswählen</option>
+          <!-- *ngFor: Erstellt für jeden Eintrag in "stupoOptionen" (aus profil.ts) automatisch eine Auswahlmöglichkeit -->
+          <option *ngFor="let s of stupoOptionen" [value]="s">{{ s }}</option>
+        </select>
+        <small class="hint-text">Die StuPO kann nach der einmaligen Festlegung nicht geändert werden.</small>
+      </div>
+
+      <!-- FELD 5: Studienmodell (Attribut "vollzeit" an Student: true = Vollzeit, false = Teilzeit) -->      <div class="form-group">
+        <label for="vollzeit">Studienmodell</label>
+        <select id="vollzeit" [(ngModel)]="profil.vollzeit" name="vollzeit" class="input-field">
+          <!-- [ngValue] wird statt [value] genutzt, damit echte Boolean-Werte (true/false) gespeichert werden -->
+          <option *ngFor="let opt of vollzeitOptionen" [ngValue]="opt.value">{{ opt.label }}</option>
+        </select>
+      </div>
+
+      <!-- FELD 6: AWE-Variante (Attribut "awe_variante" an Student) -->
+       <div class="form-group">
+        <label for="awe_variante">AWE-Variante</label>
+        <select id="awe_variante" [(ngModel)]="profil.awe_variante" name="awe_variante" class="input-field">
+          <option value="" disabled>Bitte AWE-Variante auswählen</option>
+          <option *ngFor="let a of aweOptionen" [value]="a">{{ a }}</option>
+        </select>
+      </div>
+
+      <!-- FELD 7: Startsemester (Attribut "studium_beginn" an Student, nach 1. Speichern gesperrt) -->      <div class="form-group">
+        <label for="studium_beginn">Startsemester</label>
+        <select
+          id="studium_beginn"
+          [(ngModel)]="profil.studium_beginn"
+          name="studium_beginn"
+          [disabled]="profil.studiendatenLocked"
+          [class.locked]="profil.studiendatenLocked"
+          class="input-field"
+        >
+          <option value="" disabled>Bitte Startsemester auswählen</option>
+          <option *ngFor="let sem of semesterOptionen" [value]="sem">{{ sem }}</option>
+        </select>
+      </div>
+
+      <!-- FELD 8: Checkbox für Studienberatung -->      <label class="checkbox-box">
+        <input type="checkbox" [(ngModel)]="profil.studienberatung" name="studienberatung" />
+        <span>Ich würde gerne eine Studienberatung in Anspruch nehmen</span>
+      </label>
+
+      <div *ngIf="saveSuccessMessage" class="success-banner">
+        {{ saveSuccessMessage }}
+      </div>
+
+      <button type="submit" class="save-btn">Speichern</button>
+    </form>
+  </div>
+</div>
+
+<!-- Bestätigungsmodal -->
+<div class="modal-backdrop" *ngIf="showConfirmModal">
+  <div class="modal-card">
+    <h3>Studiendaten verbindlich speichern?</h3>
+    <p>
+      Bitte beachte: Deine Auswahl für <strong>StuPO ({{ profil.stupo_id }})</strong> und
+      <strong>Startsemester ({{ profil.studium_beginn }})</strong> wird einmalig festgelegt und kann
+      danach nicht mehr bearbeitet werden.
+    </p>
+    <div class="modal-actions">
+      <!-- Schließt das Modal ohne zu speichern -->
+      <button type="button" class="btn-secondary" (click)="cancelModal()">Abbrechen</button>
+      <!-- Bestätigt die Auswahl, sperrt StuPO/Startsemester und speichert -->
+      <button type="button" class="btn-primary" (click)="confirmFirstSave()">Verbindlich speichern</button>
+    </div>
+  </div>
+</div>
