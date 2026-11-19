@@ -218,3 +218,24 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+.passwort-bereich {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pw-toggle {
+  width: 100%;
+  padding: 0.95rem;
+}
+
+.error-banner {
+  background-color: #fbe3dc;
+  color: #5a1b10;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}

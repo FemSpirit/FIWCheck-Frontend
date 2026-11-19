@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface StudentProfil {
-  user_id: number | null;
+  userId: number | null;
   name: string;
   email: string;
   studiengang: string;
-  stupo_id: string;
+  stupo: string;
   vollzeit: boolean;
-  awe_variante: string;
-  studium_beginn: string;
+  aweVariante: string;
+  studiumBeginn: string;
   studienberatung: boolean;
   studiendatenLocked: boolean;
 }
