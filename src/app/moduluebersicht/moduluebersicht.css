@@ -1,0 +1,149 @@
+/* Ein allgemeiner Container */
+.moduluebersicht-container
+{
+  display: flex;
+  gap: 20px;
+  padding: 24px 32px;
+  background-color: #f9fae6;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+.modul-bereich
+{
+  width: fit-content;
+}
+.modul-bereich h1
+{
+  margin-bottom: 84px;
+}
+
+
+.reiter-zeile 
+{
+  display: flex;       /* Zwingt die Elemente nebeneinander */
+  gap: 15px; 
+  margin-bottom: 82px; /* Schafft Abstand zur Status-Zeile darunter */
+  width: 100%;
+  box-sizing: border-box;
+}
+  .reiter-zeile button
+  {
+  flex: 1;
+  box-sizing: border-box;
+  height: 44px;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 12px;
+  flex-shrink: 0;
+  display: flex;
+  border: 2px solid #9bc344;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #1f2b14;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  }
+
+  .reiter-zeile button.aktiv 
+  {
+  background-color: #9bc344;
+  }
+.reiter-zeile button:hover 
+{
+  filter: brightness(0.94);
+}
+
+.legende-zeile 
+{
+  display: flex;       
+  gap: 15px;       
+  margin-bottom:34px;            
+}
+.legende-kachel
+{
+  display: flex;
+  border-radius: 10px;
+  height: 38px;
+  padding: 10px;
+  justify-content: center; /* Zentriert den Inhalt horizontal */
+  align-items: center; /* Zentriert den Inhalt vertikal */
+  text-align: center; /* Zentriert den Text vertikal */ 
+
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 14px; /* Setzt die Schriftgröße */
+  flex-direction: column; /* Ordnet den Inhalt in einer Spalte an */
+  box-sizing: border-box; /* Bezieht Padding und Border in die Gesamtgröße ein */
+}
+.semester-zeile
+{
+  display: flex;       
+  gap: 15px;    
+  margin-bottom: 12px; /* Fügt unten einen Abstand hinzu */    
+     
+}
+.modul-kachel
+{          
+  border-radius: 10px;
+  height: 38px; 
+  flex-shrink: 0; /* Verhindert, dass die Kachel schrumpft */      
+  overflow-wrap: break-word; /* Erlaubt das Umbrechen von langen Wörtern */ 
+  padding: 5px; /* Fügt etwas Abstand innerhalb der Kachel hinzu */
+  display: flex; /* Macht die Kachel zu einem flexiblen Container */
+  justify-content: center; /* Zentriert den Inhalt horizontal */
+  align-items: center; /* Zentriert den Inhalt vertikal */
+  text-align: center; /* Zentriert den Text vertikal */ 
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 10px; /* Setzt die Schriftgröße */
+  flex-direction: column; /* Ordnet den Inhalt in einer Spalte an */
+  box-sizing: border-box; /* Bezieht Padding und Border in die Gesamtgröße ein */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.modul-kachel.hervorgehoben 
+{
+  transform: scale(1.04);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+.modul-kachel:hover 
+{
+  filter: brightness(0.94);
+}
+.modul-kachel.informatik
+{
+  background-color: #d0dbe5; 
+}
+.modul-kachel.wirtschaft
+{
+  background-color: #b0c4de; 
+}
+.modul-kachel.fachuebergreifend
+{
+  background-color: #8faed1; 
+}
+.modul-kachel.praxis
+{
+  background-color: #6a92bc; 
+}
+
+.legende-kachel.informatik
+{
+  background-color: #d0dbe5; 
+}
+.legende-kachel.wirtschaft
+{
+  background-color: #b0c4de; 
+}
+.legende-kachel.fachuebergreifend
+{
+  background-color: #8faed1; 
+}
+.legende-kachel.praxis
+{
+    background-color: #6a92bc;
+}

@@ -1,1 +1,124 @@
-<p>moduluebersicht works!</p>
+<div class="moduluebersicht-container">
+  <div class="modul-bereich">
+  <h1>Modulübersicht</h1>
+
+<div class="reiter-zeile">
+
+  <button
+  [class.aktiv]="aktiverReiter === 'moduleGeneral'"
+  (click)="waehleReiter('moduleGeneral')"
+  >Alle Module</button> 
+     
+  <button
+  [class.aktiv]="aktiverReiter === 'moduleEigene'"
+  (click)="waehleReiter('moduleEigene')"
+  >Dein persönlicher Modulplan</button>
+
+  <button
+  [class.aktiv]="aktiverReiter === 'stupo'"
+  (click)="waehleReiter('stupo')"
+  >StuPo</button>
+
+
+</div>
+
+<div class="legende-zeile">
+
+  <div class="legende-kachel informatik"
+  (mouseenter)="setzeHervorgehobeneFachgruppe('Informatik')"
+  (mouseleave)="leereHervorgehobeneFachgruppe()"
+  >Module Informatik</div>
+
+
+  <div class="legende-kachel wirtschaft"
+  (mouseenter)="setzeHervorgehobeneFachgruppe('Wirtschaft')"
+  (mouseleave)="leereHervorgehobeneFachgruppe()"
+  >Module Wirtschaft</div>
+
+  <div class="legende-kachel fachuebergreifend"
+  (mouseenter)="setzeHervorgehobeneFachgruppe('Fachuebergreifend')"
+  (mouseleave)="leereHervorgehobeneFachgruppe()"
+  >Module Fachübergreifend</div>
+
+  <div class="legende-kachel praxis"
+  (mouseenter)="setzeHervorgehobeneFachgruppe('Praxis')"
+  (mouseleave)="leereHervorgehobeneFachgruppe()"
+  >Module Praxis</div>
+
+</div>
+  
+ 
+<!-------Zeile für Semester 6------->
+     <div class="semester-zeile">
+     6.
+     @for (module of semester6; track module.id) 
+     {
+    <div class="modul-kachel {{module.fachgruppe.toLowerCase() }}" 
+    [style.width]="getModuleWidth(module.groesse) "
+    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe"
+    >{{ module.name }}
+    </div>
+     }
+    </div>
+<!-------Zeile für Semester 5------->
+     <div class="semester-zeile">
+     5.
+     @for (module of semester5; track module.id) 
+     {
+    <div class="modul-kachel {{module.fachgruppe.toLowerCase()}}" 
+    [style.width]="getModuleWidth(module.groesse)"
+    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe"  
+    >{{ module.name }}
+    </div>
+     }
+     </div>
+<!-------Zeile für Semester 4------->
+     <div class="semester-zeile">
+     4.
+     @for (module of semester4; track module.id) 
+     {
+    <div class="modul-kachel {{module.fachgruppe.toLowerCase()}}" 
+    [style.width]="getModuleWidth(module.groesse)"
+    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
+    >{{ module.name }}
+    </div>
+     }
+     </div>
+<!------Zeile für Semester 3------->
+     <div class="semester-zeile">
+     3.
+     @for (module of semester3; track module.id) 
+     {
+    <div class="modul-kachel {{module.fachgruppe.toLowerCase()}}" 
+    [style.width]="getModuleWidth(module.groesse)"
+    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
+    >{{ module.name }}
+    </div>
+     }
+     </div>
+<!------Zeile für Semester 2------->
+     <div class="semester-zeile">
+     2.
+     @for (module of semester2; track module.id) 
+     {
+   <div class="modul-kachel {{module.fachgruppe.toLowerCase()}}" 
+   [style.width]="getModuleWidth(module.groesse)"
+   [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
+   >{{ module.name }}
+    </div>
+     }
+     </div>
+<!-------Zeile für Semester 1------->
+     <div class="semester-zeile">
+     1.
+     @for (module of semester1; track module.id) 
+     {
+   <div class="modul-kachel {{module.fachgruppe.toLowerCase()}}" 
+   [style.width]="getModuleWidth(module.groesse)"
+   [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
+   >{{ module.name }}
+    </div>
+     }
+     </div>
+  </div>
+</div>
