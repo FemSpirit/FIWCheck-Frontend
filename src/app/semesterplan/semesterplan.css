@@ -1,0 +1,305 @@
+:host {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #1f291c;
+  background-color: #f3f9e8;
+  min-height: 100vh;
+}
+
+.semesterplan-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 28px 32px 60px;
+  box-sizing: border-box;
+}
+
+/* Header & Breadcrumb */
+.page-header {
+  margin-bottom: 22px;
+}
+
+.breadcrumb {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #5c7052;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: #172114;
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: #55664e;
+  
+}
+
+/* Tab-Bar */
+.tab-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.tab-btn {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #e2ebd5;
+  background-color: #ffffff;
+  color: #2b3826;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.tab-btn:hover {
+  background-color: #f9fcf5;
+}
+
+.tab-btn.active {
+  background-color: #7ab800;
+  color: #ffffff;
+  border-color: #7ab800;
+}
+
+/* Semester-Karten Grid */
+.semester-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 820px) {
+  .semester-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.semester-card {
+  background-color: #ffffff;
+  border: 1px solid #e3ecd6;
+  border-radius: 12px;
+  padding: 16px;
+  min-height: 128px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(31, 41, 28, 0.03);
+  box-sizing: border-box;
+}
+
+.semester-card:hover {
+  border-color: #9ec94b;
+  transform: translateY(-1px);
+}
+
+.semester-card.selected {
+  background-color: #dcedb9;
+  border: 1.5px solid #8cc61f;
+}
+
+/* Kasten: neues Semester hinzufügen + */
+.add-semester-card {
+  background-color: #ffffff;
+  border: 1px solid #e3ecd6;
+  border-radius: 12px;
+  padding: 20px 16px;
+  min-height: 128px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(31, 41, 28, 0.03);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.add-semester-card:hover {
+  border-color: #7ab800;
+  background-color: #fafdf5;
+  transform: translateY(-1px);
+}
+
+.add-semester-text {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #172114;
+}
+
+.add-semester-plus {
+  font-size: 18px;
+  font-weight: 600;
+  color: #172114;
+  line-height: 1;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sem-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #172114;
+}
+
+.sem-status {
+  font-size: 11px;
+  color: #5c7052;
+}
+
+.card-ects {
+  margin: 14px 0 10px;
+}
+
+.ects-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: #172114;
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ects-meta {
+  font-size: 10.5px;
+  color: #5c7052;
+}
+
+/* Info-Banner ausgewähltes Semester */
+.selected-semester-banner {
+  background-color: #ffffff;
+  border: 1px solid #e3ecd6;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(31, 41, 28, 0.02);
+}
+
+.selected-semester-banner h2 {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: #172114;
+}
+
+.selected-semester-banner p {
+  font-size: 13px;
+  color: #5c7052;
+  margin: 0;
+}
+
+/* Weiße Modul-Container */
+.card-box {
+  background-color: #ffffff;
+  border: 1px solid #e3ecd6;
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(31, 41, 28, 0.02);
+}
+
+.section-header {
+  margin-bottom: 16px;
+}
+
+.section-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: #172114;
+}
+
+.section-header p {
+  font-size: 12.5px;
+  color: #5c7052;
+  margin: 0;
+}
+
+/* Modul-Listen & Zeilen */
+.module-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.module-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid #eef4e6;
+}
+
+.module-row:last-child {
+  border-bottom: none;
+  padding-bottom: 2px;
+}
+
+.module-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.module-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #172114;
+}
+
+.module-meta {
+  font-size: 12px;
+  color: #6a7d60;
+}
+
+.empty-state {
+  font-size: 13px;
+  color: #6a7d60;
+  font-style: italic;
+  margin: 8px 0 4px;
+}
+
+.btn-add {
+  background-color: #7ab800;
+  border: 1px solid #7ab800;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-add:hover {
+  background-color: #699e00;
+  border-color: #699e00;
+}
