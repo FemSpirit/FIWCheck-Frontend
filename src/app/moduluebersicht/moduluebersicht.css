@@ -77,7 +77,17 @@
   font-size: 14px; /* Setzt die Schriftgröße */
   flex-direction: column; /* Ordnet den Inhalt in einer Spalte an */
   box-sizing: border-box; /* Bezieht Padding und Border in die Gesamtgröße ein */
+
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;}
+.legende-kachel:hover 
+{
+  transform: scale(1.04);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  filter: brightness(0.94);
+  z-index: 2;
 }
+
 .semester-zeile
 {
   display: flex;       
@@ -103,6 +113,8 @@
   box-sizing: border-box; /* Bezieht Padding und Border in die Gesamtgröße ein */
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+
+  border: 2px solid transparent;
 }
 .modul-kachel.hervorgehoben 
 {
@@ -116,34 +128,115 @@
 }
 .modul-kachel.informatik
 {
-  background-color: #d0dbe5; 
+  background-color: #75b900b8;
 }
 .modul-kachel.wirtschaft
 {
-  background-color: #b0c4de; 
+  background-color:  #c7e298;
 }
 .modul-kachel.fachuebergreifend
 {
-  background-color: #8faed1; 
+  background-color: #a3d250;
 }
 .modul-kachel.praxis
 {
-  background-color: #6a92bc; 
+  background-color:#c7e298;
 }
+
 
 .legende-kachel.informatik
 {
-  background-color: #d0dbe5; 
+  background-color: #75b900b8;
 }
 .legende-kachel.wirtschaft
 {
-  background-color: #b0c4de; 
+  background-color:  #c7e298;
 }
 .legende-kachel.fachuebergreifend
 {
-  background-color: #8faed1; 
+  background-color: #a3d250;
 }
 .legende-kachel.praxis
 {
-    background-color: #6a92bc;
+    background-color: #c7e298;
+}
+
+
+.status-zeile
+{
+display: flex;
+gap: 15px;
+margin-bottom:34px;
+}
+
+.status-kachel
+{
+display: flex;
+border-radius: 10px;
+height: 38px;
+padding: 10px;
+justify-content: center; /* Zentriert den Inhalt horizontal */
+align-items: center; /* Zentriert den Inhalt vertikal */
+text-align: center; /* Zentriert den Text vertikal */
+
+font-family: 'Nunito', sans-serif;
+font-weight: 800;
+font-size: 14px; /* Setzt die Schriftgröße */
+flex-direction: column; /* Ordnet den Inhalt in einer Spalte an */
+box-sizing: border-box; /* Bezieht Padding und Border in die Gesamtgröße ein */
+
+cursor: pointer;
+transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;}
+
+
+.status-kachel.offen
+{
+background-color: #e7ae3d;
+}
+.status-kachel.belegt
+{
+background-color: #a85b3d;
+}
+.status-kachel.bestanden
+{
+background-color: #e7ae3d;
+}
+.status-kachel.nicht_bestanden
+{
+background-color: #a85b3d;
+}
+.status-kachel.vorgemerkt
+{
+background-color: #e7ae3d;
+}
+.modul-kachel.hervorgehoben-status
+{
+  transform: scale(1.04);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+.status-kachel:hover 
+{
+  transform: scale(1.04);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  filter: brightness(0.94);
+  z-index: 2;
+}
+
+.modul-kachel.hervorgehoben-status.status-offen {
+  border-color: #e7ad5a;
+}
+
+.modul-kachel.hervorgehoben-status.status-belegt {
+  border-color: #a85b3d;
+}
+
+.modul-kachel.hervorgehoben-status.status-bestanden {
+  border-color: #e7ae3d;
+}
+.modul-kachel.hervorgehoben-status.status-nicht_bestanden {
+  border-color: #a85b3d;
+}
+.modul-kachel.hervorgehoben-status.status-vorgemerkt {
+  border-color: #e7ae3d;
 }
