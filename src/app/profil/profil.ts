@@ -15,14 +15,14 @@ export class Profil implements OnInit {
 
   // Exakte Attributnamen passend zum ER-Modell (User, Student, Stupo)
   profil: StudentProfil = {
-    user_id: null,
+    userId: null,
     name: '',
     email: '',
-    studiengang: 'Informatik und Wirtschaft',
-    stupo_id: '',             // Beziehung: Student "studiert nach" Stupo
+  
+    stupo: '',             // Beziehung: Student "studiert nach" Stupo
     vollzeit: true,           // Attribut "Vollzeit" (true = Vollzeit, false = Teilzeit)
-    awe_variante: '',         // Attribut "awe_variante"
-    studium_beginn: '',       // Attribut "studium_beginn" (Startsemester)
+    aweVariante: '',         // Attribut "awe_variante"
+    studiumBeginn: '',       // Attribut "studium_beginn" (Startsemester)
     studienberatung: false,
     studiendatenLocked: false // Frontend-Hilfsschalter: true = StuPO & Startsemester sind gesperrt
   };
@@ -30,6 +30,15 @@ export class Profil implements OnInit {
   avatarUrl = 'assets/images/katzefiwilogo.png';
   isLoading = false;
   errorMessage = '';
+
+  // Passwortänderung- neu
+  passwordErrorMessage = '';
+  passwordSuccessMessage = '';
+  altesPasswort = '';
+  neuesPasswort = '';
+  neuesPasswortBestaetigen = '';
+  showPw = false;
+  showPasswordForm = false;
 
   // Dropdown-Auswahloptionen für das HTML-Formular
   stupoOptionen = ['StuPO 2024', 'StuPO 2014'];
@@ -71,7 +80,7 @@ export class Profil implements OnInit {
           ...this.profil,
           ...daten,
           // Falls StuPO & Startsemester bereits in der DB stehen, direkt sperren
-          studiendatenLocked: Boolean(daten.stupo_id && daten.studium_beginn)
+          studiendatenLocked: Boolean(daten.stupo && daten.studiumBeginn)
         };
         this.isLoading = false;
       },
@@ -82,8 +91,43 @@ export class Profil implements OnInit {
     });
   }
 
+  //Neues Passwort ändern
+  onPasswordChange(): void {
+    this.passwordErrorMessage = '';
+    this.passwordSuccessMessage = '';
+
+    if (!this.altesPasswort || !this.neuesPasswort || !this.neuesPasswortBestaetigen) {
+      this.passwordErrorMessage = 'Bitte füllen Sie alle Passwort-Felder aus.';
+      return;
+    }
+
+    if (this.neuesPasswort.length < 8) {
+      this.passwordErrorMessage = 'Das neue Passwort muss mindestens 8 Zeichen lang sein.';
+      return;
+    }
+    if (this.neuesPasswort !== this.neuesPasswortBestaetigen) {
+      this.passwordErrorMessage = 'Die Passwörter stimmen nicht überein.';
+      return;
+    }
+
+    this.userService.changePassword(this.userId, this.altesPasswort, this.neuesPasswort).subscribe({
+  next: () => {
+    this.passwordSuccessMessage = 'Passwort erfolgreich geändert!';
+    this.altesPasswort = '';
+    this.neuesPasswort = '';
+    this.neuesPasswortBestaetigen = '';
+    this.showPasswordForm = false;
+  },
+  error: () => {
+    this.passwordErrorMessage = 'Fehler beim Ändern des Passworts.';
+  }
+});
+    
+
+  }
+
   onSaveClick(): void {
-    if (!this.profil.studiendatenLocked && (this.profil.stupo_id || this.profil.studium_beginn)) {
+    if (!this.profil.studiendatenLocked && (this.profil.stupo || this.profil.studiumBeginn)) {
       this.showConfirmModal = true;
     } else {
       this.speichernAusfuehren();
