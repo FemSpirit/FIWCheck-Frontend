@@ -15,7 +15,7 @@ export interface Modul {
 export interface SemesterInfo {
   nummer: number;
   status: string;
-  richtwertECTS: number; 
+  richtwertECTS: number;
 }
 
 // Konfiguriert die Klasse als Standalone-Komponente mit HTML-Template und CSS-Stylesheet
@@ -29,7 +29,8 @@ export interface SemesterInfo {
 
 //steuert ob die persönlcie Planung oder der StuPO-Vorschlag angezeigt wird
 export class Semesterplan implements OnInit {
-  activeTab: 'vorschlag' | 'personal' = 'personal'; /* schaltet um zwischen Fenster "Deine persönliche Planung" und "Algorithmischer Vorschlag für die Semesterplanung " */
+  activeTab: 'vorschlag' | 'personal' =
+    'personal'; /* schaltet um zwischen Fenster "Deine persönliche Planung" und "Algorithmischer Vorschlag für die Semesterplanung " */
   selectedSemester: number | null = null;
 
   // Vollständige Modulliste
@@ -143,21 +144,30 @@ export class Semesterplan implements OnInit {
       angebotssemester_vz: 'ws',
     },
 
-    /* { modul_nummer: 'b34', stupo: 2024, bezeichnung: 'Softwareentwicklungsprojekt', ECTS: 10, angebotssemester_vz: 'ws' }, */
     {
+      modul_nummer: 'b34',
+      stupo: 2024,
+      bezeichnung: 'Softwareentwicklungsprojekt',
+      ECTS: 10,
+      angebotssemester_vz: 'ws',
+    },
+
+    /* {
       modul_nummer: 'b34.1',
       stupo: 2024,
       bezeichnung: 'Softwareentwicklungsprojekt',
       ECTS: 5,
       angebotssemester_vz: 'ws',
     },
+
     {
       modul_nummer: 'b34.2',
       stupo: 2024,
       bezeichnung: 'Arbeitswelt IT',
       ECTS: 5,
       angebotssemester_vz: 'ws',
-    },
+    }, */
+
     {
       modul_nummer: 'b35',
       stupo: 2024,
@@ -165,7 +175,7 @@ export class Semesterplan implements OnInit {
       ECTS: 5,
       angebotssemester_vz: 'ws',
     },
-    {
+    /* {
       modul_nummer: 'b35.1',
       stupo: 2024,
       bezeichnung: 'Agiles Projektmanagement',
@@ -178,12 +188,12 @@ export class Semesterplan implements OnInit {
       bezeichnung: 'Konfliktmanagement und Mediation',
       ECTS: 2.5,
       angebotssemester_vz: 'ws',
-    },
+    }, */
 
     {
       modul_nummer: 'b41',
       stupo: 2024,
-      bezeichnung: 'Wahlpflichtmodul (Wirtschafts-)Informatik 1',
+      bezeichnung: 'Wahlpflichtmodul (Wirtschafts-) Informatik 1',
       ECTS: 5,
       angebotssemester_vz: 'ss',
     },
@@ -329,7 +339,9 @@ export class Semesterplan implements OnInit {
   }
 
   get aktuelleSemesterListe(): SemesterInfo[] {
-    return this.activeTab === 'vorschlag' ? this.vorschlagSemesterListe : this.personalSemesterListe;
+    return this.activeTab === 'vorschlag'
+      ? this.vorschlagSemesterListe
+      : this.personalSemesterListe;
   }
 
   get aktuelleModuleMap(): { [semester: number]: Modul[] } {
@@ -374,8 +386,7 @@ export class Semesterplan implements OnInit {
    */
   neuesSemesterHinzufuegen(): void {
     const naechsteNummer = this.personalSemesterListe.length + 1;
-    const turnusLabel =
-      naechsteNummer % 2 === 1 ? 'Wintersemester' : 'Sommersemester';
+    const turnusLabel = naechsteNummer % 2 === 1 ? 'Wintersemester' : 'Sommersemester';
     console.log(
       `Semester ${naechsteNummer} (${turnusLabel}) angelegt. Verfügbare Module:`,
       this.gefilterteVerfuegbareModule.map((m) => m.bezeichnung),
@@ -431,13 +442,6 @@ export class Semesterplan implements OnInit {
     return this.getGeplanteModule(semesterNummer).reduce((summe, mod) => summe + mod.ECTS, 0);
   }
 
-  getFortschrittProzent(semesterNummer: number): number {
-    const sem = this.aktuelleSemesterListe.find((s) => s.nummer === semesterNummer);
-    const richtwert = sem ? sem.richtwertECTS : 30;
-    const aktuell = this.getGeplanteECTS(semesterNummer);
-    return Math.min(100, (aktuell / richtwert) * 100);
-  }
-
   modulHinzufuegen(modul: Modul): void {
     if (this.activeTab !== 'personal' || this.selectedSemester === null) {
       return;
@@ -457,7 +461,6 @@ export class Semesterplan implements OnInit {
     });
   }
 
-  // 2. In der Klasse Semesterplan ergänzen:
   offenesNotenModul: string | null = null;
   notenOptionen: number[] = [1.0, 1.3, 1.7, 2.0, 2.3, 2.7, 3.0, 3.3, 3.7, 4.0]; //5.0 kann nicht gesetzt werden
 
