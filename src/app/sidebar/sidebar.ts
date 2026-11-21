@@ -30,9 +30,9 @@ export class SidebarComponent {
   mainNavItems: NavItem[] = [
     { label: 'Startseite', icon: 'home', route: '/startseite' },
     { label: 'Profil', icon: 'person', route: '/profil' },
-    { label: 'Stundenplan', icon: 'edit_calendar', route: '/stundenplan' },
+    { label: 'Semesterplan', icon: 'edit_calendar', route: '/semesterplan' },
     { label: 'Modulübersicht', icon: 'article', route: '/moduluebersicht' },
-    /* { label: 'Noten', icon: 'book', route: '/noten' }, erstmal raus*/                          /* Noten doch weg?, habs erstmal drinnen gelassen */
+    { label: 'Noten', icon: 'book', route: '/noten' },
     { label: 'Statistik', icon: 'trending_up', route: '/statistikstudi' },
     { label: 'Kalender', icon: 'calendar_today', route: '/kalender' }
   ];
