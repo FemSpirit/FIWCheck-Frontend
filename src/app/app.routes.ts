@@ -12,7 +12,7 @@ import {Statistikprof} from './statistikprof/statistikprof';
 import {Login} from './login/login';
 import {Registrierung} from './registrierung/registrierung';
 import {Einstellungen} from './einstellungen/einstellungen';
-
+import {Moduldetails} from './moduldetails/moduldetails';
 
 export const routes: Routes = [
     {path: '', component: Startseite},
@@ -28,6 +28,6 @@ export const routes: Routes = [
     {path: 'statistikprof', component: Statistikprof},
     {path: 'login', component: Login},
     {path: 'registrierungsformular', component: Registrierung},
-    {path: 'einstellungen', component: Einstellungen}
-
+    {path: 'einstellungen', component: Einstellungen},
+    {path: 'moduldetails/:id', component: Moduldetails}
 ];
