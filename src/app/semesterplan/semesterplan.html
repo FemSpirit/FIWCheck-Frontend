@@ -32,15 +32,26 @@
       class="semester-card"
       [class.selected]="selectedSemester === sem.nummer"
       (click)="selectSemester(sem.nummer)">
+      
       <div class="card-header">
         <div class="card-header-top">
           <span class="sem-title">{{ sem.nummer }}. Semester</span>
+          <button 
+            *ngIf="activeTab === 'personal' && isLast"
+            type="button"
+            class="btn-delete-semester"
+            title="Letztes Semester entfernen"
+            (click)="letztesSemesterEntfernen($event)">
+            ×
+          </button>
         </div>
         <span class="sem-status">{{ sem.status }}</span>
       </div>
+
       <div class="card-ects">
         <span class="ects-number">{{ getGeplanteECTS(sem.nummer) }}</span>
       </div>
+
       <div class="card-footer">
         <span class="ects-meta">ECTS geplant · Richtwert {{ sem.richtwertECTS }} ECTS</span>
       </div>
@@ -74,17 +85,61 @@
   <section class="module-section card-box" *ngIf="selectedSemester !== null && getGeplanteModule(selectedSemester).length > 0">
     <div class="section-header">
       <h3>Deine geplanten Module für dieses Semester</h3>
-      <p *ngIf="activeTab === 'personal'"></p>
+      <p *ngIf="activeTab === 'personal'">Entferne ein Modul, um es in einem anderen Semester einzuplanen</p>
+      <p *ngIf="activeTab === 'vorschlag'">Empfohlener Studienverlauf laut Studien- und Prüfungsordnung</p>
     </div>
 
     <div class="module-list">
       <div class="module-row" *ngFor="let mod of getGeplanteModule(selectedSemester)">
         <div class="module-info">
           <span class="module-name">{{ mod.bezeichnung }}</span>
-          <span class="module-meta">{{ mod.ECTS }} ECTS · {{ mod.statusText || 'belegt / geplant' }}</span>
+          <span class="module-meta">{{ mod.ECTS }} ECTS · {{ mod.statusText || 'belegt / geplant' }}
+            <ng-container *ngIf="mod.note !== undefined">
+          · Note: {{ mod.note | number:'1.1-1' }}
+        </ng-container>
+          </span>
+        </div>
+
+        <div class="module-actions" *ngIf="activeTab === 'personal'">
+      <!-- Wrapper für Button + aufklappendes Dropdown -->
+      <div class="note-dropdown-wrapper">
+        <button
+          type="button"
+          class="btn-add-note"
+          (click)="toggleNotenDropdown(mod.modul_nummer)">
+          {{ mod.note !== undefined ? 'Note ändern' : 'Note eintragen' }}
+        </button>
+
+        <!-- Dropdown-Liste -->
+        <div class="note-dropdown-menu" *ngIf="offenesNotenModul === mod.modul_nummer">
+          <button
+            type="button"
+            class="note-option"
+            *ngFor="let n of notenOptionen"
+            (click)="noteSetzen(mod, n)">
+            {{ n | number:'1.1-1' }}
+          </button>
+
+          <button
+            *ngIf="mod.note !== undefined"
+            type="button"
+            class="btn-add-note" //class="note-option note-option-clear "
+            (click)="noteSetzen(mod, undefined)">
+            Note löschen
+          </button>
         </div>
       </div>
+
+      <button
+        type="button"
+        class="btn-remove"
+        (click)="modulEntfernen(mod)">
+        Entfernen
+      </button>
     </div>
+  </div>
+</div>
+
   </section>
 
   <!-- Module hinzufügen Liste (nur in persönlicher Planung wenn ein Semester ausgewählt ist) -->
