@@ -2,11 +2,12 @@ import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService, StudentProfil } from '../services/user.service';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-profil',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatIcon],
   templateUrl: './profil.html',
   styleUrl: './profil.css'
 })
@@ -39,6 +40,7 @@ export class Profil implements OnInit {
   neuesPasswortBestaetigen = '';
   showPw = false;
   showPasswordForm = false;
+  
 
   // Dropdown-Auswahloptionen für das HTML-Formular
   stupoOptionen = ['StuPO 2024', 'StuPO 2014'];
