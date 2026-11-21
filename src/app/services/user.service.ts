@@ -6,7 +6,6 @@ export interface StudentProfil {
   userId: number | null;
   name: string;
   email: string;
-  studiengang: string;
   stupo: string;
   vollzeit: boolean;
   aweVariante: string;
