@@ -49,18 +49,7 @@
         />
       </div>
 
-      <!-- FELD 3: Studiengang (dauerhaft gesperrt) -->
-      <div class="form-group">
-        <label for="studiengang">Studiengang</label>
-        <input
-          id="studiengang"
-          type="text"
-          [value]="profil.studiengang ? profil.studiengang + ' · gesperrt' : ''"
-          placeholder="Informatik und Wirtschaft · gesperrt"
-          disabled
-          class="input-field locked"
-        />
-      </div>
+     
 
       <!-- FELD 4: StuPO (Beziehung: Student "studiert nach" Stupo) -->
       <div class="form-group">
@@ -116,44 +105,48 @@
       </div>
 
 <!--  NEU: Passwort ändern: eigene Karte mit eigenem Formular -->
-<div class="passwort-bereich">
-  <button type="button" class="btn-secondary pw-toggle" (click)="showPasswordForm = !showPasswordForm">
-    Passwort ändern
-  </button>
+<div class="pw-box">
+  <div class="pw-row">
+    <div>
+      <strong>Passwort</strong><br>
+      <small class="hint-text">Eingerichtet</small>
+    </div>
+    <button type="button" class="btn-secondary" (click)="showPasswordForm = !showPasswordForm">
+      {{ showPasswordForm ? 'Verbergen' : 'Passwort ändern' }}
+    </button>
+  </div>
 
   <div *ngIf="passwordSuccessMessage" class="success-banner">{{ passwordSuccessMessage }}</div>
 
-  <form *ngIf="showPasswordForm" (ngSubmit)="onPasswordChange()" class="angaben-form">
-    <div class="form-group">
-      <label for="altesPasswort">Altes Passwort</label>
-      <input id="altesPasswort" [type]="showPw ? 'text' : 'password'"
-             [(ngModel)]="altesPasswort" name="altesPasswort" class="input-field" />
-    </div>
+  <form *ngIf="showPasswordForm" (ngSubmit)="onPasswordChange()" class="angaben-form pw-form">
+  <div class="form-group">
+    <label for="alt">Altes Passwort</label>
+    <input id="alt" [type]="showPw ? 'text' : 'password'" [(ngModel)]="altesPasswort" name="alt" class="input-field" />
+  </div>
 
-    <div class="form-group">
-      <label for="neuesPasswort">Neues Passwort</label>
-      <input id="neuesPasswort" [type]="showPw ? 'text' : 'password'"
-             [(ngModel)]="neuesPasswort" name="neuesPasswort" class="input-field" />
-      <small class="hint-text">Mindestens 8 Zeichen.</small>
-    </div>
+  <div class="form-group">
+    <label for="neu">Neues Passwort</label>
+    <input id="neu" [type]="showPw ? 'text' : 'password'" [(ngModel)]="neuesPasswort" name="neu" class="input-field" />
+  </div>
 
-    <div class="form-group">
-      <label for="neuesPasswortBestaetigen">Neues Passwort bestätigen</label>
-      <input id="neuesPasswortBestaetigen" [type]="showPw ? 'text' : 'password'"
-             [(ngModel)]="neuesPasswortBestaetigen" name="neuesPasswortBestaetigen" class="input-field" />
-    </div>
+  <div class="form-group">
+    <label for="neu2">Neues Passwort bestätigen</label>
+    <input id="neu2" [type]="showPw ? 'text' : 'password'" [(ngModel)]="neuesPasswortBestaetigen" name="neu2" class="input-field" />
+    <small class="hint-text">Mindestens 8 Zeichen.</small>
+  </div>
 
-    <label class="checkbox-box">
-      <input type="checkbox" [(ngModel)]="showPw" name="showPw" />
-      <span>Passwörter anzeigen</span>
-    </label>
+  <label>
+    <input type="checkbox" [(ngModel)]="showPw" name="showPw" />
+    Passwörter anzeigen
+  </label>
 
-    <div *ngIf="passwordErrorMessage" class="error-banner">{{ passwordErrorMessage }}</div>
+  <div *ngIf="passwordErrorMessage" class="error-banner">{{ passwordErrorMessage }}</div>
 
-    <button type="submit" class="save-btn">Passwort speichern</button>
-  </form>
+  <button type="submit" class="save-btn">Passwort aktualisieren</button>
+</form>
+
+    
 </div>
-
 
       <!-- FELD 8: Checkbox für Studienberatung -->      <label class="checkbox-box">
         <input type="checkbox" [(ngModel)]="profil.studienberatung" name="studienberatung" />
