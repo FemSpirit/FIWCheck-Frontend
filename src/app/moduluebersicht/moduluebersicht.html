@@ -22,6 +22,7 @@
 
 </div>
 
+@if (aktiverReiter !== "stupo") {
 <div class="legende-zeile">
 
   <div class="legende-kachel informatik"
@@ -46,8 +47,133 @@
   >Module Praxis</div>
 
 </div>
+}
+@if (aktiverReiter === 'stupo')
+{
+<div class="stupo-links">
+    <a
+    class="stupo24-link-button"
+    href="https://www.htw-berlin.de/fileadmin/HTW/Zentral/Rechtsstelle/Amtliche_Mitteilungsblaetter/2024/08_24.pdf"
+    target="_blank"
+    > Zur originalen HTW-StuPo2024 (PDF)
+    </a>
   
- 
+     <a
+    class="stupo14-link-button"
+    href="https://fiw.htw-berlin.de/fileadmin/HTW/Zentral/Rechtsstelle/Amtliche_Mitteilungsblaetter/2014/17_14.pdf"
+    target="_blank"
+    > Zur originalen HTW-StuPo2014 (PDF)
+    </a>
+ </div>   
+ <div class="stupo-inhalt">
+     <h2>Studien-, und Prüfungsordnung 2024</h2>
+          <h3>Allgemein</h3>
+          <hr>
+          <ul>
+               <li><strong>Regelstudienzeit: </strong>6 Semester</li>
+               <li><strong>Gesamt-Workload: </strong>180 ECTS-Leistungspunkte (ein ECTS entspricht ca. 30 Stunden studentischer Arbeit)</li>
+               <li>Man kann das Studium auch auf Antrag in Teilzeit absolvieren, dafür ist der empfohlene Studienplan aus 10 Semester ausgelegt</li>
+               <li><strong>Praktikum: </strong>mind. 60 LP
+               <ul>
+                    <li>600 Stunden &rarr; 15 Wochen (Vollzeit)</li>
+                    <li>das 4. Semester gilt als Praxissemester &rarr; Vollzeitpraktikum</li>
+               </ul>
+               </li>
+               <li><strong>Man muss AWE (allgemeinwissenschaftliche Ergänzungsmodule) und Fremdsprachen im Umfang von 12 LP einplanen (also 8 LP Fremdsprache und 2x 2LP pro AWE). Die gewählte Fremdsprache darf nicht die eigene Muttersprache sein. Die Vertiefung in Englisch wird vom Studiengang ausdrücklich empfohlen.</strong></li>
+               <li>Softwareprojekte im 3. und 5. Semester</li>
+               <li>das 5. Semester gilt als Mobilitätssemester d.h. ideal für ein Semester im In- oder Ausland</li>
+               <li>Anerkennung von Leistungen: es können Module aus vorherigen Studiengängen sowie die Teilnahme an studienrelevanten Projekten als Leistung für FIW anerkannt werden</li>
+          </ul>
+          <hr>
+
+          <h2>Module mit Notwendigen Voraussetzungen (NV) – Harte Hürden</h2>
+          <p>Diese Module kannst du erst belegen, wenn das genannte Modul oder die Bedingung offiziell bestanden ist:</p>
+          <ul>
+               <li>B34 (Softwareentwicklungsprojekt (3.-Semester-Projekt)) &rarr; NV: B11 (Programmierung 1)</li>
+               <li>B43 (Fachpraktikum) &rarr; NV: Mindestens 60 ECTS im Gesamtstudium</li>
+               <li>B56 (Projekte in der Wirtschaft (5.-Semester-Projekt)) &rarr; NV: B34 (Softwareentwicklungsprojekt)</li>
+               <li>B61 (Modellierung von Informationssystemen) &rarr; NV: B33 (Datenbanksysteme)</li>
+               <li>B66 (Bachelorarbeit) & B65 (Kolloquium) &rarr; NV: Mindestens 151 ECTS (für die Arbeit) bzw. 177 ECTS (für das Kolloquium)</li>
+          </ul>
+          <hr>
+          <h2>Module mit Empfohlenen Voraussetzungen (EV) – Inhaltliche Empfehlungen</h2>
+          <p>Diese Module haben keine rechtliche Sperre, wenn die Vorleistung fehlt, aber laut Studienplan wird sie dringend empfohlen:</p>
+          <ul>
+               <li>B21 (Programmierung 2) &rarr; EV: B13 (Grundlegende Konzepte der Informatik)</li>
+               <li>B23 (Software-Engineering 1) &rarr; EV: B11 (Programmierung 1), B13 (Grundlegende Konzepte der Informatik)</li>
+               <li>B24 (Webtechnologien) &rarr; EV: B11 (Programmierung 1)</li>
+               <li>B25 (BWL 2: Rechnungswesen) &rarr; EV: B14 (BWL 1: Grundlagen der BWL)</li>
+               <li>B31 (Data Science) &rarr; EV: B13 (Grundlegende Konzepte der Informatik)</li>
+               <li>B32 (Software-Engineering 2) &rarr; EV: B23 (Software-Engineering 1)</li>
+               <li>B33 (Datenbanksysteme) &rarr; EV: B24 (Webtechnologien)</li>
+               <li>B34 (Softwareentwicklungsprojekt) &rarr; EV: B21 (Programmierung 2), B24 (Webtechnologien)</li>
+               <li>B35 (Projektmanagement) &rarr; EV: B23 (Software-Engineering 1)</li>
+               <li>B42 (Wissenschaftliches Schreiben) &rarr; EV: B25 (BWL 2: Rechnungswesen)</li>
+               <li>B51 (Human Computer Interaction) &rarr; EV: B32 (Software-Engineering 2)</li>
+               <li>B52 (Verteilte Systeme) &rarr; EV: B24 (Webtechnologien), B31 (Data Science)</li>
+               <li>B53 (Datenschutz und Datensicherheit) &rarr; EV: B12 (Rechnerarchitektur/Betriebssysteme)</li>
+               <li>B55 (Informatik und Gesellschaft) &rarr; EV: B42 (Wissenschaftliches Schreiben)</li>
+               <li>B56 (Projekte in der Wirtschaft) &rarr; EV: B21 (Programmierung 2)</li>
+               <li>B61 (Modellierung von Informationssystemen) &rarr; EV: B51 (Human Computer Interaction)</li>
+               <li>B62 (BWL 3: Berufspraxis IT-Wirtschaft) &rarr; EV: B14 (BWL 1: Grundlagen der BWL)</li>
+          </ul>
+          <hr>
+          <h2>AWE/Fremdsprache-Modul (3 Varianten)</h2>
+          <h3><strong>Variante 1: Der Standard (Eine Sprache vertiefen + freie AWE)</strong></h3>
+          <p>Das ist der klassische Weg für die meisten Studierenden:</p>
+
+          <ul>
+               <li>1. Semester (Modul B16, 4 ECTS): Du belegst eine erste Fremdsprache auf einem bestimmten Einstiegsniveau (z. B. Englisch Fachsprache B2.1 Technik ODER eine andere Sprache wie Französisch/Spanisch/Russisch auf B1.2 Wirtschaft ODER Deutsch als Fremdsprache). </li>
+               <li>2. Semester (Modul B26, 4 ECTS): Du machst im selben Fach den Aufbaukurs (z. B. Englisch Fachsprache B2.2 Technik). Damit hast du deine 8 geforderten Fremdsprachen-ECTS voll. </li>
+               <li>6. Semester (Module B63 & B64, je 2 ECTS): Du belegst zwei ganz normale AWE-Module deiner freien Wahl (also keineFremdsprachen mehr, sondern z. B. Seminare zu Kommunikation, Psychologie oder Kultur).</li>
+          </ul>
+          <h3><strong>Variante 2: Zwei verschiedene Fremdsprachen</strong></h3>
+          <p>Wenn du lieber zwei Sprachen lernen möchtest statt allgemeiner AWE-Kurse:</p>
+          <ul>
+               <li>1. & 2. Semester (B16 & B26, je 4 ECTS): Du machst wie in Variante 1 deine erste Fremdsprache (z. B. Englisch) über zwei Semester.</li>
+               <li>6. Semester (B63 & B64, zusammen 4 ECTS): Anstelle der normalen AWE-Module wählst du hier eine zweite Fremdsprache (aus dem Angebot der Zentraleinrichtung Fremdsprachen).</li>
+          </ul>
+          <h3><strong>Variante 3: Die Intensiv-Variante (Eine Fremdsprache extrem vertiefen)</strong></h3>
+          <p>Wenn du deine Sprachkenntnisse (vor allem in Englisch oder einer anderen zugelassenen Sprache) auf ein sehr hohes Niveau bringen möchtest:</p>
+          <ul>
+               <li>1. & 2. Semester (B16 & B26, je 4 ECTS): Du absolvierst die normalen ersten beiden Sprachmodule.</li>
+               <li>6. Semester (B63 & B64, zusammen 4 ECTS): Du machst keine freien AWE-Kurse und keine zweite Sprache, sondern hängst ein fortgeschrittenes Sprachmodul an (z. B. Advanced English C1.1/C1.2 oder eine höhere Stufe für Französisch/Spanisch/Russisch).</li>
+          </ul>
+          <hr>
+          <h2>Prüfungen & Noten</h2>
+          <ul>
+               <li>Sobald du eine Prüfung in einem Wahlpflichtmodul bestanden ist, ist dieses "eingeloggt" und kann nicht mehr durch ein anderes Wahlpflichtmodul ersetzt werden</li>
+               <li>Anstelle eines der curricular vorgesehenen Wahlpflichtmodule B41 (Wirtschafts-)Informatik 1 oder B54 (Wirtschafts-)Informatik 2 ist es den Studierenden nach Zustimmung durch den Prüfungsausschuss und Maßgabe freier Plätze gestattet, ein interdisziplinäres (oder Makro-) Projekt die eigenen oder anderen Fachbereiche der HTW Berlin zu absolvieren.</li>
+               <li>Prog1, BWL1, Mathematik1 und 1. Fremdsprache 1 fließen weder in die Abschlussnote ein, noch erscheinen sie auf dem Bachelorzeugnis</li>
+               <li>Rechnerarchitektur/Betriebssysteme und Grundlegende Konzepte der Informatik stehen zwar auf dem Zeugnis, zählen aber ebenfalls nicht für die Endnote</li>
+               <li>Zulassung Bachelorarbeit: mind. 151 LP erfolgreich abgeschlossen & alle Module der ersten drei Studienplansemester erfolgreich abgeschlossen (Rahmen-StuPO HTW)</li>
+               <ul>
+                    <li>Ausnahme: Wenn du am Ende des 5. Studienplansemesters erst 141 statt 151 ECTS hast (dir also noch Module im Umfang von maximal 10 ECTS fehlen), wirst du trotzdem zugelassen.</li>
+               </ul>
+               <li>das Abschlusskolloquium ist die Modulprüfung im Modul Bachelorseminar und Abschlusskolloquium &rarr; Zum Kolloquium zugelassen, wenn 177 LP erreicht einschließlich der erfolgreich bestandenen Bachelorarbeit</li>
+               <li>Berechnung der Bachelornote: Der Schnitt der relevanten Module macht 75 % der Endnote aus, die Bachelorarbeit 15 % und das Abschlusskolloquium 10 %</li>
+          </ul>
+          <hr>
+          <h3><strong>Wahpflichtmodule</strong></h3>
+          <img src="assets/images/WP-Module.png" alt="Tabellenübersicht Wahlpflichtmodule">
+          <hr>
+          <h3><strong>Studienpläne (Regelstudienzeit - Vollzeit)</strong></h3>
+          <img src="assets/images/Sem1VZ.png" alt="Vollzeit Modulübersicht Semester 1-2">
+          <img src="assets/images/Sem3VZ.png" alt="Vollzeit Modulübersicht Semester 3-4">
+          <img src="assets/images/Sem5VZ.png" alt="Vollzeit Modulübersicht Semester 5-6">
+          <hr>
+          <h3><strong>Studienpläne (Regelstudienzeit - Teilzeit)</strong></h3>
+
+          <img src="assets/images/Sem1TZ.png" alt="Teilzeit Modulübersicht Semester 1-4">
+          <img src="assets/images/Sem5TZ.png" alt="Teilzeit Modulübersicht Semester 5-8">
+          <img src="assets/images/Sem9TZ.png" alt="Teilzeit Modulübersicht Semester 9-10">
+
+    
+     </div>
+}
+  <!------------Reiter Alle Module nach Studienverlaufsplan----------->
+    @if (aktiverReiter === 'moduleGeneral') 
+    {
 <!-------Zeile für Semester 6------->
      <div class="semester-zeile">
      6.
@@ -120,5 +246,144 @@
     </div>
      }
      </div>
+    }
+   <!---------------------Reiter Eigene Module---------------------->  
+     @if (aktiverReiter === 'moduleEigene') 
+     {
+        <!---------nun möchten wir unsere schöne Statuszeile präsentieren und bauen----->
+        <div class="status-zeile">
+
+         <div class="status-kachel offen"
+         (mouseenter)="setzeHervorgehobeneStatus('offen')"
+         (mouseleave)="leereHervorgehobeneStatus()"
+         >offen</div>
+
+         <div class="status-kachel belegt"
+         (mouseenter)="setzeHervorgehobeneStatus('belegt')"
+         (mouseleave)="leereHervorgehobeneStatus()"
+         >belegt</div>
+
+         <div class="status-kachel bestanden"
+         (mouseenter)="setzeHervorgehobeneStatus('bestanden')"
+         (mouseleave)="leereHervorgehobeneStatus()"
+         >bestanden</div>
+
+         <div class="status-kachel nicht_bestanden"
+         (mouseenter)="setzeHervorgehobeneStatus('nicht_bestanden')"
+         (mouseleave)="leereHervorgehobeneStatus()"
+         >nicht bestanden</div>
+        
+         <div class="status-kachel vorgemerkt"
+         (mouseenter)="setzeHervorgehobeneStatus('vorgemerkt')"
+         (mouseleave)="leereHervorgehobeneStatus()"
+         >vorgemerkt</div>
+
+       </div>
+
+      <!-------Zeile für Semester 8------->
+     <div class="semester-zeile">
+     8.
+     @for (module of eigeneSemester8; track module.id) 
+     {
+    <div class="modul-kachel {{module.fachgruppe.toLowerCase() }} status-{{ statusOderOffen(module) }}" 
+    [style.width]="getModuleWidth(module.groesse) "
+    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe"
+    [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
+    >{{ module.name }}
+    </div>
+     }
+    </div>
+          <!-------Zeile für Semester 7------->
+     <div class="semester-zeile">
+     7.
+     @for (module of eigeneSemester7; track module.id) 
+     {
+    <div class="modul-kachel {{module.fachgruppe.toLowerCase() }} status-{{ statusOderOffen(module) }}" 
+    [style.width]="getModuleWidth(module.groesse) "
+    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe"
+    [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
+    >{{ module.name }}
+    </div>
+     }
+    </div>
+        <!-------Zeile für Semester 6------->
+     <div class="semester-zeile">
+     6.
+     @for (module of eigeneSemester6; track module.id) 
+     {
+    <div class="modul-kachel {{module.fachgruppe.toLowerCase() }} status-{{ statusOderOffen(module) }}" 
+    [style.width]="getModuleWidth(module.groesse) "
+    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe"
+    [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
+    >{{ module.name }}
+    </div>
+     }
+    </div>
+<!-------Zeile für Semester 5------->
+     <div class="semester-zeile">
+     5.
+     @for (module of eigeneSemester5; track module.id) 
+     {
+    <div class="modul-kachel {{module.fachgruppe.toLowerCase()}} status-{{ statusOderOffen(module) }}" 
+    [style.width]="getModuleWidth(module.groesse)"
+    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe"  
+    [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
+    >{{ module.name }}
+    </div>
+     }
+     </div>
+<!-------Zeile für Semester 4------->
+     <div class="semester-zeile">
+     4.
+     @for (module of eigeneSemester4; track module.id) 
+     {
+    <div class="modul-kachel {{module.fachgruppe.toLowerCase()}} status-{{ statusOderOffen(module) }}" 
+    [style.width]="getModuleWidth(module.groesse)"
+    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
+    [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
+    >{{ module.name }}
+    </div>
+     }
+     </div>
+<!------Zeile für Semester 3------->
+     <div class="semester-zeile">
+     3.
+     @for (module of eigeneSemester3; track module.id) 
+     {
+    <div class="modul-kachel {{module.fachgruppe.toLowerCase()}} status-{{ statusOderOffen(module) }}" 
+    [style.width]="getModuleWidth(module.groesse)"
+    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
+    [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
+    >{{ module.name }}
+    </div>
+     }
+     </div>
+<!------Zeile für Semester 2------->
+     <div class="semester-zeile">
+     2.
+     @for (module of eigeneSemester2; track module.id) 
+     {
+   <div class="modul-kachel {{module.fachgruppe.toLowerCase()}} status-{{ statusOderOffen(module) }}" 
+   [style.width]="getModuleWidth(module.groesse)"
+   [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
+   [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
+   >{{ module.name }}
+    </div>
+     }
+     </div>
+<!-------Zeile für Semester 1------->
+     <div class="semester-zeile">
+     1.
+     @for (module of eigeneSemester1; track module.id) 
+     {
+   <div class="modul-kachel {{module.fachgruppe.toLowerCase()}} status-{{ statusOderOffen(module) }}" 
+   [style.width]="getModuleWidth(module.groesse)"
+   [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
+   [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
+   >{{ module.name }}
+    </div>
+     }
+     </div>
+     }
   </div>
 </div>

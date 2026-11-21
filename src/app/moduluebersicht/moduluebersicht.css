@@ -11,13 +11,14 @@
 .modul-bereich
 {
   width: fit-content;
+  min-width: 887.56px;
 }
 .modul-bereich h1
 {
   margin-bottom: 84px;
 }
 
-
+/*-----------------------Reiter Zeile----------------------- */
 .reiter-zeile 
 {
   display: flex;       /* Zwingt die Elemente nebeneinander */
@@ -46,7 +47,6 @@
   font-size: 14px;
   font-weight: 800;
   }
-
   .reiter-zeile button.aktiv 
   {
   background-color: #9bc344;
@@ -55,6 +55,18 @@
 {
   filter: brightness(0.94);
 }
+
+/*-----------------------Semester Zeile----------------------- */
+
+.semester-zeile
+{
+  display: flex;       
+  gap: 15px;    
+  margin-bottom: 12px; /* Fügt unten einen Abstand hinzu */       
+}
+
+
+/*-----------------------Legende Zeile----------------------- */
 
 .legende-zeile 
 {
@@ -77,14 +89,37 @@
   font-size: 14px; /* Setzt die Schriftgröße */
   flex-direction: column; /* Ordnet den Inhalt in einer Spalte an */
   box-sizing: border-box; /* Bezieht Padding und Border in die Gesamtgröße ein */
+
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
-.semester-zeile
+.legende-kachel:hover 
 {
-  display: flex;       
-  gap: 15px;    
-  margin-bottom: 12px; /* Fügt unten einen Abstand hinzu */    
-     
+  transform: scale(1.04);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  filter: brightness(0.94);
+  z-index: 2;
 }
+
+.legende-kachel.informatik
+{
+  background-color: #75b900b8;
+}
+.legende-kachel.wirtschaft
+{
+  background-color:  #c7e298;
+}
+.legende-kachel.fachuebergreifend
+{
+  background-color: #a3d250;
+}
+.legende-kachel.praxis
+{
+    background-color: #c7e298;
+}
+
+/*-----------------------Modul Kacheln----------------------- */
+
 .modul-kachel
 {          
   border-radius: 10px;
@@ -103,6 +138,8 @@
   box-sizing: border-box; /* Bezieht Padding und Border in die Gesamtgröße ein */
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+
+  border: 2px solid transparent;
 }
 .modul-kachel.hervorgehoben 
 {
@@ -116,34 +153,169 @@
 }
 .modul-kachel.informatik
 {
-  background-color: #d0dbe5; 
+  background-color: #75b900b8;
 }
 .modul-kachel.wirtschaft
 {
-  background-color: #b0c4de; 
+  background-color:  #c7e298;
 }
 .modul-kachel.fachuebergreifend
 {
-  background-color: #8faed1; 
+  background-color: #a3d250;
 }
 .modul-kachel.praxis
 {
-  background-color: #6a92bc; 
+  background-color:#c7e298;
 }
 
-.legende-kachel.informatik
+/* jetzt möchte ich, dass meine Modulkacheln beim hervorheben die gleiche Farbe der Umrandung haben, wie der dazugehörige Status*/
+
+.modul-kachel.hervorgehoben-status
 {
-  background-color: #d0dbe5; 
+  transform: scale(1.04);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  z-index: 2;
 }
-.legende-kachel.wirtschaft
+.modul-kachel.hervorgehoben-status.status-offen 
 {
-  background-color: #b0c4de; 
+  border-color: #e7ad5a;
 }
-.legende-kachel.fachuebergreifend
+.modul-kachel.hervorgehoben-status.status-belegt 
 {
-  background-color: #8faed1; 
+  border-color: #a85b3d;
 }
-.legende-kachel.praxis
+.modul-kachel.hervorgehoben-status.status-bestanden 
 {
-    background-color: #6a92bc;
+  border-color: #e7ae3d;
+}
+.modul-kachel.hervorgehoben-status.status-nicht_bestanden 
+{
+  border-color: #a85b3d;
+}
+.modul-kachel.hervorgehoben-status.status-vorgemerkt 
+{
+  border-color: #e7ae3d;
+}
+
+/*-----------------------Status Zeile----------------------- */
+
+.status-zeile
+{
+display: flex;
+gap: 15px;
+margin-bottom:34px;
+}
+.status-kachel
+{
+display: flex;
+border-radius: 10px;
+height: 38px;
+padding: 10px;
+justify-content: center; /* Zentriert den Inhalt horizontal */
+align-items: center; /* Zentriert den Inhalt vertikal */
+text-align: center; /* Zentriert den Text vertikal */
+
+font-family: 'Nunito', sans-serif;
+font-weight: 800;
+font-size: 14px; /* Setzt die Schriftgröße */
+flex-direction: column; /* Ordnet den Inhalt in einer Spalte an */
+box-sizing: border-box; /* Bezieht Padding und Border in die Gesamtgröße ein */
+
+cursor: pointer;
+transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.status-kachel.offen
+{
+background-color: #e7ae3d;
+}
+.status-kachel.belegt
+{
+background-color: #a85b3d;
+}
+.status-kachel.bestanden
+{
+background-color: #e7ae3d;
+}
+.status-kachel.nicht_bestanden
+{
+background-color: #a85b3d;
+}
+.status-kachel.vorgemerkt
+{
+background-color: #e7ae3d;
+}
+.status-kachel:hover 
+{
+  transform: scale(1.04);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  filter: brightness(0.94);
+  z-index: 2;
+}
+
+/*-----------------------------Stupo Links-------------------------------- */
+
+.stupo-links
+{
+  display: flex; /* Ordnet die Buttons flexibel in einer Zeile/Reihe an */
+  gap: 12px; /* Setzt 12px Abstand zwischen den Buttons */
+  margin-top: 16px; /* Schafft 16px Abstand nach oben (z. B. zu den Reitern) */
+}
+.stupo24-link-button,
+.stupo14-link-button 
+{
+  display: inline-flex;                       /* Macht den Link wie einen Button ausrichtbar, bleibt aber im Textfluss */
+  align-items: center;                        /* Zentriert den Inhalt innerhalb des Buttons vertikal */
+  gap: 8px;                                   /* Abstand zwischen Elementen im Button (falls z. B. ein Icon dazukommt) */
+  padding: 10px 18px;                         /* Innenabstand: 10px oben/unten, 18px links/rechts */
+  border-radius: 12px;                        /* Rundet die Ecken des Buttons um 12px ab */
+  border: 2px solid transparent;              /* Unsichtbarer Rahmen vorab, damit beim Hover nichts verrutscht */
+  border-radius: 12px;                         /* Rundet die Ecken des Buttons um 12px ab */
+
+  background-color: #c7e298;                /* Hintergrundfarbe des Buttons */
+  color: #1f2910;                           /* Schriftfarbe des Button-Textes */
+  font-family: 'Nunito', sans-serif;          /* Nutzt die Nunito-Schriftart */
+  font-size: 14px;                            /* Schriftgröße des Button-Textes */
+  font-weight: 800;                           /* Extra-fette Schrift für gute Lesbarkeit */
+  text-decoration: none;                      /* Entfernt die Standard-Unterstreichung von Links */
+  transition: transform 0.15s ease, filter 0.15s ease; /* Weicher Übergang bei Hover-Änderungen */
+}
+.stupo24-link-button:hover,
+.stupo14-link-button:hover 
+{
+  border-color: #4f8104; /* Sichtbarer Rahmen beim Hovern (passt zur dunklen Schrift) */
+  filter: brightness(0.95); /* Macht den Button beim Drüberfahren leicht dunkler */
+  transform: translateY(-1px); /* Hebt den Button beim Hover um 1px leicht an */
+}
+
+/*--------------------- Stupo Textinhalt---------------- */
+.stupo-inhalt
+{
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #1f2910;
+  margin-top: 24px;
+}
+.stupo-inhalt h2
+{
+  font-size: 24px;
+  font-weight: 800;
+  margin-top: 0;
+  margin-bottom: 14px;
+  color: #1f2b14;
+}
+
+.stupo-inhalt h3
+{
+  font-size: 19px;
+  font-weight: 800;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  color: #1f2b14;
+}
+
+.stupo-inhalt p
+{
+  margin-top: 0;
+  margin-bottom: 12px;
 }
