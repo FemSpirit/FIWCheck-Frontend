@@ -324,6 +324,7 @@ export class Semesterplan implements OnInit {
   ];
   // Dictionary/Map: Ordnet jeder Semester-Nummer ein Array der dort eingeplanten Module zu
   vorschlagGeplanteModuleMap: { [semester: number]: Modul[] } = {};
+/* sem: any; */
 
   // 1. In ngOnInit():
   ngOnInit(): void {
@@ -440,6 +441,13 @@ export class Semesterplan implements OnInit {
 
   getGeplanteECTS(semesterNummer: number): number {
     return this.getGeplanteModule(semesterNummer).reduce((summe, mod) => summe + mod.ECTS, 0);
+  }
+
+    getFortschrittProzent(semesterNummer: number): number {
+    const sem = this.aktuelleSemesterListe.find((s) => s.nummer === semesterNummer);
+    const richtwert = sem ? sem.richtwertECTS : 30;
+    const aktuell = this.getGeplanteECTS(semesterNummer);
+    return Math.min(100, (aktuell / richtwert) * 100);
   }
 
   modulHinzufuegen(modul: Modul): void {

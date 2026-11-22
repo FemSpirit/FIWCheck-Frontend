@@ -210,6 +210,25 @@
   color: #5c7052;
 }
 
+.progress-track {
+  width: 100%;
+  height: 5px;
+  background-color: #e6eedb;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.semester-card.selected .progress-track {
+  background-color: #c2dc92;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #4f7a00;
+  border-radius: 99px;
+  transition: width 0.3s ease;
+}
+
 /* Info-Banner ausgewähltes Semester */
 .selected-semester-banner {
   background-color: #ffffff;
