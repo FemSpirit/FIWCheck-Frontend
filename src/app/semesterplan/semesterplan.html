@@ -27,8 +27,8 @@
 
   <!-- Semester-Karten Grid -->
   <section class="semester-grid">
-    <div 
-      *ngFor="let sem of aktuelleSemesterListe; let isLast = last" 
+    <div
+     *ngFor="let sem of aktuelleSemesterListe; let isLast = last" 
       class="semester-card"
       [class.selected]="selectedSemester === sem.nummer"
       (click)="selectSemester(sem.nummer)">
@@ -54,6 +54,12 @@
 
       <div class="card-footer">
         <span class="ects-meta">ECTS geplant · Richtwert {{ sem.richtwertECTS }} ECTS</span>
+        <div class="progress-track">
+          <div 
+            class="progress-fill" 
+            [style.width.%]="getFortschrittProzent(sem.nummer)">
+          </div>
+        </div>
       </div>
     </div>
 
