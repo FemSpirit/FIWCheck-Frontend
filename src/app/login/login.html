@@ -25,10 +25,10 @@
           formControlName="email" 
           class="form-control"
           [ngClass]="{ 'is-invalid': isSubmitted && f['email'].errors }"
-          placeholder="beispiel@htw-berlin.de"
+          placeholder="name@student.htw-berlin.de"
         />
         <div *ngIf="isSubmitted && f['email'].errors" class="error-message">
-          <small *ngIf="f['email'].errors['required']">Bitte gib deine E-Mail-Adresse ein.</small>
+          <small *ngIf="f['email'].errors['required']">Bitte gib deine HTW E-Mail-Adresse ein.</small>
           <small *ngIf="f['email'].errors['email']">Bitte gib eine gültige E-Mail-Adresse ein.</small>
         </div>
       </div>
