@@ -83,10 +83,14 @@
       <!-- FELD 6: AWE-Variante (Attribut "awe_variante" an Student) -->
        <div class="form-group">
         <label for="awe_variante">AWE-Variante</label>
-        <select id="awe_variante" [(ngModel)]="profil.aweVariante" name="awe_variante" class="input-field">
+
+        <select id="awe_variante" [(ngModel)]="profil.aweVariante" name="awe_variante" [disabled]="profil.studiendatenLocked"
+          [class.locked]="profil.studiendatenLocked" class="input-field">
+
           <option value="" disabled>Bitte AWE-Variante auswählen</option>
           <option *ngFor="let a of aweOptionen" [value]="a">{{ a }}</option>
         </select>
+        <small class="hint-text">Die AWE-Variante kann nach der einmaligen Festlegung nicht geändert werden.</small>
       </div>
 
       <!-- FELD 7: Startsemester (Attribut "studium_beginn" an Student, nach 1. Speichern gesperrt) -->      <div class="form-group">

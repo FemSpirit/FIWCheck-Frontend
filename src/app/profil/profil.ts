@@ -3,11 +3,13 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService, StudentProfil } from '../services/user.service';
 import { MatIcon } from '@angular/material/icon';
+import { AuthService } from '../shared/auth.service';
+
 
 @Component({
   selector: 'app-profil',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatIcon],
+  imports: [CommonModule, FormsModule],
   templateUrl: './profil.html',
   styleUrl: './profil.css'
 })
@@ -15,11 +17,11 @@ export class Profil implements OnInit {
   userId: number = 1;
 
   // Exakte Attributnamen passend zum ER-Modell (User, Student, Stupo)
-  profil: StudentProfil = {
-    userId: null,
+
+  profil = {
+    user_id: null,
     name: '',
     email: '',
-  
     stupo: '',             // Beziehung: Student "studiert nach" Stupo
     vollzeit: true,           // Attribut "Vollzeit" (true = Vollzeit, false = Teilzeit)
     aweVariante: '',         // Attribut "awe_variante"
@@ -55,9 +57,10 @@ export class Profil implements OnInit {
 
   showConfirmModal = false;
   saveSuccessMessage = '';
+  userService: any;
 
   constructor(
-    private userService: UserService,
+    private authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
@@ -76,14 +79,15 @@ export class Profil implements OnInit {
     this.isLoading = true;
     this.errorMessage = '';
 
-    this.userService.getProfil(this.userId).subscribe({
+    this.authService.getStudentprofil().subscribe({
       next: (daten) => {
-        this.profil = {
-          ...this.profil,
-          ...daten,
-          // Falls StuPO & Startsemester bereits in der DB stehen, direkt sperren
-          studiendatenLocked: Boolean(daten.stupo && daten.studiumBeginn)
-        };
+
+        this.profil.name = daten.username ?? '';
+        this.profil.email = daten.email ?? '';
+        this.profil.stupo = daten.stupoId === 1 ? 'StuPO 2024' : daten.stupoId === 2 ? 'StuPO 2014' : '';
+        this.profil.studiumBeginn = this.mapSemesterNumberToText(daten.startsemester);
+        this.profil.aweVariante = this.mapAweShortToText(daten.aweVariante);
+        this.profil.studiendatenLocked = Boolean(daten.stupoId && daten.startsemester && daten.aweVariante);
         this.isLoading = false;
       },
       error: () => {
@@ -149,5 +153,31 @@ export class Profil implements OnInit {
   private speichernAusfuehren(): void {
     this.saveSuccessMessage = 'Deine Angaben wurden erfolgreich gespeichert!';
     setTimeout(() => (this.saveSuccessMessage = ''), 3500);
+  }
+  //Wandelt den ausgewählten Text in BA Format
+  private mapSemesterTextToNumber(text: string): number {
+    const match = text.match(/(\d{4})/);
+    return match ? Number(`${match[1]}2`) : 20242;
+  }
+  //Hier genau anders herum
+  private mapSemesterNumberToText(sem?: number): string {
+    if (!sem) return '';
+    const jahr = Math.floor(sem / 10);
+    const kurz = String((jahr + 1) % 100).padStart(2, '0');
+    return `WiSe ${jahr}/${kurz}`;
+  }
+   //Kürzt den AWE Text auf max länge der DB Spalte
+  private mapAweTextToShort(text: string): string {
+    if (text.startsWith('Variante 1')) return 'Variante 1';
+    if (text.startsWith('Variante 2')) return 'Variante 2';
+    if (text.startsWith('Variante 3')) return 'Variante 3';
+    return text.substring(0, 10);
+  }
+   //Hier genau anders herum
+  private mapAweShortToText(short?: string): string {
+    if (short === 'Variante 1') return this.aweOptionen[0];
+    if (short === 'Variante 2') return this.aweOptionen[1];
+    if (short === 'Variante 3') return this.aweOptionen[2];
+    return short ?? '';
   }
 }
