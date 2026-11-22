@@ -1,1 +1,71 @@
-<p>moduldetails works!</p>
+<div class="moduldetails-seite">
+
+
+<div class="moduldetails-inhalt">
+    <a class="zurueck-button" routerLink="/moduluebersicht"> ← Zurück zur Modulübersicht</a>
+
+@if (modul) 
+{
+    <h1>{{ modul.bezeichnung }}</h1>
+    <div class="modul-rand">
+    <h3><strong>Modulnummer: </strong> <strong>{{ modul.modulnummer }}</strong></h3>
+    <p>{{ modul.beschreibung }}</p>
+
+
+    <h2>Lernergebnis und Kompetenzen</h2>
+
+      <h3>Fachkompetenz</h3>
+      <p>Nachdem sie das Modul erfolgreich absolviert haben, können die Studierenden</p>
+      <ul>
+        <li>grundlegende Programmierkonzepte, wie Variablen, Datentypen, Schleifen, Bedingungen und Methoden anwenden,</li>
+        <li>grundlegende Kenntnisse über Algorithmen und deren Analyse verwenden, um effiziente Lösungen für Probleme zu entwickeln,</li>
+        <li>grundlegende Datenstrukturen, wie Arrays und Collections, verwenden,</li>
+        <li>Klassen, Objekte, Vererbung, Datenkapselung und Polymorphie anwenden.</li>
+      </ul>
+
+      <h3>Methodenkompetenz</h3>
+      <p>Nachdem sie das Modul erfolgreich absolviert haben, können die Studierenden</p>
+      <ul>
+        <li>Programme schreiben, um Probleme zu lösen und Aufgaben zu automatisieren,</li>
+        <li>Fehler erkennen und behandeln, um Programme robust und fehlerfrei zu gestalten,</li>
+        <li>mit Entwicklungs (IDE)- und Debugging-Tools arbeiten,</li>
+        <li>sicher mit der Programmiersprache Java arbeiten.</li>
+      </ul>
+
+    
+    <h2>Eckdaten</h2>
+    <ul>
+      <li><strong>ECTS:</strong> {{ modul.ects }}</li>
+      <li><strong>Lehrform:</strong> {{ modul.form }}</li>
+      <li><strong>SWS:</strong> {{ modul.sws }}</li>
+      <li><strong>Angebotssemester:</strong> {{ modul.angebotssemester }}</li>
+      <li><strong>Empfohlenes Semester:</strong> {{ modul.empfohlendesSemester }}</li>
+      <li><strong>Fachgruppe:</strong> {{ modul.fachgruppe }}</li>
+      <li><strong>Pflichtmodul:</strong> {{ modul.pflichtart ? 'Ja' : 'Nein' }}</li>
+      <li><strong>Zeugnisrelevant:</strong> {{ modul.zeugnisrelevant ? 'Ja' : 'Nein' }}</li>
+      <li><strong>Gesamtnotenrelevant:</strong> {{ modul.gesamtnotenrelevant ? 'Ja' : 'Nein' }}</li>
+    </ul>
+
+    <h2>Anrechnung &amp; Zuordnung</h2>
+    <ul>
+      <li><strong>Fließt in Gesamtnote:</strong> {{ modul.fliesstInGesamtnote }}</li>
+      <li><strong>Fließt in Modulgruppe-Note:</strong> {{ modul.fliesstInModulgruppeNote }}</li>
+      <li><strong>Rastergröße VZ:</strong> {{ modul.raster_groesse_vz }}</li>
+      <li><strong>Modul-ID:</strong> {{ modul.modul_id }}</li>
+      <li><strong>Stupo-ID:</strong> {{ modul.stupo_id }}</li>
+      <li><strong>Modulgruppe-ID:</strong> {{ modul.modulgruppe_id }}</li>
+    </ul>
+    </div>
+    } 
+    @else if (fehlerMeldung) 
+    {
+    <p>{{ fehlerMeldung }}</p>
+    } 
+    @else 
+    {
+    <p>Modul wird geladen...</p>
+    }
+    
+</div>
+
+
