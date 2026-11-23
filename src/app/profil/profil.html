@@ -49,27 +49,16 @@
         />
       </div>
 
-      <!-- FELD 3: Studiengang (dauerhaft gesperrt) -->
-      <div class="form-group">
-        <label for="studiengang">Studiengang</label>
-        <input
-          id="studiengang"
-          type="text"
-          [value]="profil.studiengang ? profil.studiengang + ' · gesperrt' : ''"
-          placeholder="Informatik und Wirtschaft · gesperrt"
-          disabled
-          class="input-field locked"
-        />
-      </div>
+     
 
-      <!-- FELD 4: StuPO (Beziehung: Student "studiert nach" Stupo) -->>
+      <!-- FELD 4: StuPO (Beziehung: Student "studiert nach" Stupo) -->
       <div class="form-group">
         <label for="stupo_id">StuPO</label>
         <!-- [disabled]="profil.studiendatenLocked": Sperrt das Dropdown, sobald die Daten einmalig gespeichert wurden -->
         <!-- [class.locked]: Fügt die CSS-Klasse "locked" hinzu (hellgrüner Hintergrund), wenn gesperrt -->
         <select
           id="stupo_id"
-          [(ngModel)]="profil.stupo_id"
+          [(ngModel)]="profil.stupo"
           name="stupo_id"
           [disabled]="profil.studiendatenLocked"
           [class.locked]="profil.studiendatenLocked"
@@ -94,17 +83,21 @@
       <!-- FELD 6: AWE-Variante (Attribut "awe_variante" an Student) -->
        <div class="form-group">
         <label for="awe_variante">AWE-Variante</label>
-        <select id="awe_variante" [(ngModel)]="profil.awe_variante" name="awe_variante" class="input-field">
+
+        <select id="awe_variante" [(ngModel)]="profil.aweVariante" name="awe_variante" [disabled]="profil.studiendatenLocked"
+          [class.locked]="profil.studiendatenLocked" class="input-field">
+
           <option value="" disabled>Bitte AWE-Variante auswählen</option>
           <option *ngFor="let a of aweOptionen" [value]="a">{{ a }}</option>
         </select>
+        <small class="hint-text">Die AWE-Variante kann nach der einmaligen Festlegung nicht geändert werden.</small>
       </div>
 
       <!-- FELD 7: Startsemester (Attribut "studium_beginn" an Student, nach 1. Speichern gesperrt) -->      <div class="form-group">
         <label for="studium_beginn">Startsemester</label>
         <select
           id="studium_beginn"
-          [(ngModel)]="profil.studium_beginn"
+          [(ngModel)]="profil.studiumBeginn"
           name="studium_beginn"
           [disabled]="profil.studiendatenLocked"
           [class.locked]="profil.studiendatenLocked"
@@ -114,6 +107,50 @@
           <option *ngFor="let sem of semesterOptionen" [value]="sem">{{ sem }}</option>
         </select>
       </div>
+
+<!--  NEU: Passwort ändern: eigene Karte mit eigenem Formular -->
+<div class="pw-box">
+  <div class="pw-row">
+    <div>
+      <strong>Passwort</strong><br>
+      <small class="hint-text">Eingerichtet</small>
+    </div>
+    <button type="button" class="btn-secondary" (click)="showPasswordForm = !showPasswordForm">
+      {{ showPasswordForm ? 'Verbergen' : 'Passwort ändern' }}
+    </button>
+  </div>
+
+  <div *ngIf="passwordSuccessMessage" class="success-banner">{{ passwordSuccessMessage }}</div>
+
+  <form *ngIf="showPasswordForm" (ngSubmit)="onPasswordChange()" class="angaben-form pw-form">
+  <div class="form-group">
+    <label for="alt">Altes Passwort</label>
+    <input id="alt" [type]="showPw ? 'text' : 'password'" [(ngModel)]="altesPasswort" name="alt" class="input-field" />
+  </div>
+
+  <div class="form-group">
+    <label for="neu">Neues Passwort</label>
+    <input id="neu" [type]="showPw ? 'text' : 'password'" [(ngModel)]="neuesPasswort" name="neu" class="input-field" />
+  </div>
+
+  <div class="form-group">
+    <label for="neu2">Neues Passwort bestätigen</label>
+    <input id="neu2" [type]="showPw ? 'text' : 'password'" [(ngModel)]="neuesPasswortBestaetigen" name="neu2" class="input-field" />
+    <small class="hint-text">Mindestens 8 Zeichen.</small>
+  </div>
+
+  <label>
+    <input type="checkbox" [(ngModel)]="showPw" name="showPw" />
+    Passwörter anzeigen
+  </label>
+
+  <div *ngIf="passwordErrorMessage" class="error-banner">{{ passwordErrorMessage }}</div>
+
+  <button type="submit" class="save-btn">Passwort aktualisieren</button>
+</form>
+
+    
+</div>
 
       <!-- FELD 8: Checkbox für Studienberatung -->      <label class="checkbox-box">
         <input type="checkbox" [(ngModel)]="profil.studienberatung" name="studienberatung" />
@@ -134,8 +171,8 @@
   <div class="modal-card">
     <h3>Studiendaten verbindlich speichern?</h3>
     <p>
-      Bitte beachte: Deine Auswahl für <strong>StuPO ({{ profil.stupo_id }})</strong> und
-      <strong>Startsemester ({{ profil.studium_beginn }})</strong> wird einmalig festgelegt und kann
+      Bitte beachte: Deine Auswahl für <strong>StuPO ({{ profil.stupo }})</strong> und
+      <strong>Startsemester ({{ profil.studiumBeginn }})</strong> wird einmalig festgelegt und kann
       danach nicht mehr bearbeitet werden.
     </p>
     <div class="modal-actions">
