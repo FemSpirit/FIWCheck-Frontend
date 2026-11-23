@@ -1,0 +1,131 @@
+.moduldetails-seite 
+{
+  display: flex; /* Flex-Container */
+  justify-content: center; /* horizontal mittig */
+  align-items: flex-start; /* oben ausrichten */
+  flex: 1; /* füllt freien Platz */
+  min-width: 0; /* darf schrumpfen */
+  width: 100%; /* volle Breite */
+  padding: 28px 32px; /* Innenabstand */
+  background-color: #f9fae6; /* Hintergrundfarbe */
+  min-height: 100%; /* volle Mindesthöhe */
+  box-sizing: border-box; /* Padding/Border in Breite/Höhe */
+  font-family: 'Nunito', sans-serif; /* Schriftart */
+  color: #1f2910; /* Textfarbe */
+}
+
+.moduldetails-inhalt 
+{
+  width: 100%; /* volle Breite */
+  max-width: 900px; /* max. 900px breit */
+  min-width: 0; /* darf schrumpfen */
+  box-sizing: border-box; /* Padding/Border in Breite */
+}
+
+.zurueck-button 
+{
+  display: inline-flex; /* inline Flex-Box */
+  align-items: center; /* vertikal mittig */
+  justify-content: center; /* horizontal mittig */
+  gap: 8px; /* Abstand zwischen Inhalten */
+  padding: 10px 18px; /* Innenabstand */
+  margin-bottom: 64px; /* Abstand nach unten */
+  border-radius: 12px; /* abgerundete Ecken */
+  border: 2px solid #9bc344; /* grüner Rahmen */
+  background-color: #c7e298; /* hellgrüne Füllung */
+  color: #1f2b14; /* Schriftfarbe */
+  font-family: 'Nunito', sans-serif; /* Schriftart */
+  font-size: 14px; /* Schriftgröße */
+  font-weight: 800; /* fette Schrift */
+  text-decoration: none; /* keine Unterstreichung */
+  cursor: pointer; /* Zeiger-Cursor */
+  box-sizing: border-box; /* Padding/Border in Größe */
+  transition: transform 0.15s ease, filter 0.15s ease, background-color 0.15s ease; /* weicher Übergang */
+}
+
+.zurueck-button:hover 
+{
+  background-color: #9bc344; /* dunkleres Grün bei Hover */
+  filter: brightness(0.96); /* etwas abdunkeln */
+  transform: translateY(-1px); /* leicht nach oben */
+}
+
+.moduldetails-inhalt h1 
+{
+  margin-top: 0; /* kein Abstand oben */
+  margin-bottom: 14px; /* Abstand unten */
+  font-size: 32px; /* Titelgröße */
+  font-weight: 800; /* fette Schrift */
+  color: #1f2b14; /* Schriftfarbe */
+  overflow-wrap: break-word; /* lange Wörter umbrechen */
+}
+
+.moduldetails-inhalt h2 
+{
+  margin-top: 28px; /* Abstand oben */
+  margin-bottom: 12px; /* Abstand unten */
+  font-size: 20px; /* Zwischenüberschrift-Größe */
+  font-weight: 800; /* fette Schrift */
+  color: #1f2b14; /* Schriftfarbe */
+}
+
+.moduldetails-inhalt p 
+{
+  margin-top: 0; /* kein Abstand oben */
+  margin-bottom: 12px; /* Abstand unten */
+  line-height: 1.6; /* Zeilenhöhe */
+  overflow-wrap: break-word; /* lange Wörter umbrechen */
+}
+
+/*<!------------------------------Kompetenz Block der Mockdaten----------------------> */
+
+.kompetenzen-block 
+{
+  border: 1.5px solid #d7e4b8; /* dünner grüner Rand */
+  border-radius: 12px; /* abgerundete Ecken */
+  padding: 18px 22px; /* Innenabstand */
+  margin-top: 12px; /* Abstand oben */
+  margin-bottom: 24px; /* Abstand unten */
+}
+
+.kompetenzen-block h3 
+{
+  margin-top: 0; /* kein Abstand oben */
+  margin-bottom: 6px; /* Abstand unten */
+  font-size: 16px; /* Schriftgröße */
+  font-weight: 800; /* fette Schrift */
+  color: #1f2b14; /* Schriftfarbe */
+}
+
+.kompetenzen-block h3 + p 
+{
+  margin-bottom: 8px; /* Abstand nach h3-Absatz */
+}
+
+.kompetenzen-block ul 
+{
+  margin-top: 0; /* kein Abstand oben */
+  margin-bottom: 18px; /* Abstand unten */
+  padding-left: 22px; /* Einrückung links */
+}
+
+.kompetenzen-block ul:last-child 
+{
+  margin-bottom: 0; /* kein Abstand am Ende */
+}
+
+.kompetenzen-block li 
+{
+  margin-bottom: 6px; /* Abstand zwischen Punkten */
+  line-height: 1.55; /* Zeilenhöhe */
+}
+
+/*<!----------------Rand für die gesamte Zusammenfassung----------------->*/
+
+.modul-rand 
+{
+  border: 1.5px solid #9bc344; /* grüner Rand */
+  border-radius: 12px; /* abgerundete Ecken */
+  padding: 20px 24px; /* Innenabstand */
+  box-sizing: border-box; /* Padding/Border in Breite */
+}

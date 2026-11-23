@@ -1,19 +1,22 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
 
 export interface Module
 {
-  id: String;
-  name: string;
+  modul_id?: number;
+  modulnummer?: string;
+  bezeichnung: string;
   semester: number;
-  ECTS: number;
+  ects: number;
   status?: "offen" | "belegt" | "bestanden" | "nicht_bestanden" | "vorgemerkt";
-  fachgruppe: "Informatik" | "Wirtschaft" | "Praxis" | "Fachuebergreifend"
-  groesse?: number; // Optional: z.B. 2, 3.5, 4 oder 0.5
+  fachgruppe: "Informatik" | "Wirtschaft" | "Praxis" | "Fachuebergreifend";
+  raster_groesse_vz?: number;
 }
 
 type ReiterTyp = 'moduleGeneral' | 'moduleEigene' | 'stupo';
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-moduluebersicht',
   styleUrl: './moduluebersicht.css',
   templateUrl: './moduluebersicht.html',
@@ -45,271 +48,302 @@ export class Moduluebersicht
 //-------------- Meine schönen Mockdaten als Liste---------->
   modules: Module[] = [
     {
-      id: "B11",
-      name: "Programmieren 1",
+      modul_id: 1,
+      modulnummer: "B11",
+      bezeichnung: "Programmieren 1",
       semester: 1,
-      ECTS: 6,
+      ects: 6,
       status: "offen",
       fachgruppe: "Informatik"
     },
     {
-      id: "B12",
-      name: "Rechnerarchitektur/ Betriebssysteme",
+      modul_id: 2,
+      modulnummer: "B12",
+      bezeichnung: "Rechnerarchitektur/ Betriebssysteme",
       semester: 1,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
-       {
-      id: "B13",
-      name: "Grundlegende Konzepte der Informatik",
+    {
+      modul_id: 3,
+      modulnummer: "B13",
+      bezeichnung: "Grundlegende Konzepte der Informatik",
       semester: 1,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
-       {
-      id: "B14",
-      name: "BWL 1: Grundlagen der BWL",
+    {
+      modul_id: 4,
+      modulnummer: "B14",
+      bezeichnung: "BWL 1: Grundlagen der BWL",
       semester: 1,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Wirtschaft"
     },
     {
-      id: "B15",
-      name: "Mathematik 1",
+      modul_id: 5,
+      modulnummer: "B15",
+      bezeichnung: "Mathematik 1",
       semester: 1,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
     {
-      id: "B16",
-      name: "1. Fremdsprache 1",
+      modul_id: 6,
+      modulnummer: "B16",
+      bezeichnung: "1. Fremdsprache 1",
       semester: 1,
-      ECTS: 4,
+      ects: 4,
       status: "offen",
       fachgruppe: "Fachuebergreifend"
     },
     //---------2. Fachsemester----------------
     {
-      id: "B21",
-      name: "Programmieren 2",
+      modul_id: 7,
+      modulnummer: "B21",
+      bezeichnung: "Programmieren 2",
       semester: 2,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
     {
-      id: "B22",
-      name: "Mathematik 2",
+      modul_id: 8,
+      modulnummer: "B22",
+      bezeichnung: "Mathematik 2",
       semester: 2,
-      ECTS: 6,
+      ects: 6,
       status: "offen",
       fachgruppe: "Informatik"
     },
     {
-      id: "B23",
-      name: "Software-Engineering 1",
+      modul_id: 9,
+      modulnummer: "B23",
+      bezeichnung: "Software-Engineering 1",
       semester: 2,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
     {
-      id: "B24",
-      name: "Webtechnologien",
+      modul_id: 10,
+      modulnummer: "B24",
+      bezeichnung: "Webtechnologien",
       semester: 2,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
     {
-      id: "B25",
-      name: "BWL 2: Rechnungswesen",
+      modul_id: 11,
+      modulnummer: "B25",
+      bezeichnung: "BWL 2: Rechnungswesen",
       semester: 2,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Wirtschaft"
     },
     {
-      id: "B26",
-      name: "1. Fremdsprache 2",
+      modul_id: 12,
+      modulnummer: "B26",
+      bezeichnung: "1. Fremdsprache 2",
       semester: 2,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Fachuebergreifend"
     },
     //---------3. Fachsemester----------------
     {
-      id: "B31",
-      name: "Data Science",
+      modul_id: 13,
+      modulnummer: "B31",
+      bezeichnung: "Data Science",
       semester: 3,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
     {
-      id: "B32",
-      name: "Software-Engineering 2",
+      modul_id: 14,
+      modulnummer: "B32",
+      bezeichnung: "Software-Engineering 2",
       semester: 3,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
     {
-      id: "B33",
-      name: "Datenbanksysteme",
+      modul_id: 15,
+      modulnummer: "B33",
+      bezeichnung: "Datenbanksysteme",
       semester: 3,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
     {
-      id: "B34",
-      name: "Softwareentwicklungsprojekt",
+      modul_id: 16,
+      modulnummer: "B34",
+      bezeichnung: "Softwareentwicklungsprojekt",
       semester: 3,
-      ECTS: 10,
+      ects: 10,
       status: "offen",
       fachgruppe: "Informatik",
-      groesse: 2
+      raster_groesse_vz: 2
     },
     {
-      id: "B35",
-      name: "Projektmanagement",
+      modul_id: 17,
+      modulnummer: "B35",
+      bezeichnung: "Projektmanagement",
       semester: 3,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
     //---------4. Fachsemester----------------
-     {
-      id: "B41",
-      name: "Wahlpflichtmodul (Wirtschafts-)Informatik 1",
+    {
+      modul_id: 18,
+      modulnummer: "B41",
+      bezeichnung: "Wahlpflichtmodul (Wirtschafts-)Informatik 1",
       semester: 4,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Wirtschaft"
     },
-     {
-      id: "B42",
-      name: "Wissenschaftliches Schreiben",
+    {
+      modul_id: 19,
+      modulnummer: "B42",
+      bezeichnung: "Wissenschaftliches Schreiben",
       semester: 4,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Fachuebergreifend"
     },
-     {
-      id: "B43",
-      name: "Fachpraktikum",
+    {
+      modul_id: 20,
+      modulnummer: "B43",
+      bezeichnung: "Fachpraktikum",
       semester: 4,
-      ECTS: 20,
+      ects: 20,
       status: "offen",
       fachgruppe: "Praxis",
-      groesse: 4
+      raster_groesse_vz: 4
     },
     //---------5. Fachsemester----------------
     {
-      id: "B51",
-      name: "Human Computer Interaction",
+      modul_id: 21,
+      modulnummer: "B51",
+      bezeichnung: "Human Computer Interaction",
       semester: 5,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
     {
-      id: "B52",
-      name: "Verteilte Systeme",
+      modul_id: 22,
+      modulnummer: "B52",
+      bezeichnung: "Verteilte Systeme",
       semester: 5,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
     {
-      id: "B53",
-      name: "Datenschutz und Datensicherheit",
+      modul_id: 23,
+      modulnummer: "B53",
+      bezeichnung: "Datenschutz und Datensicherheit",
       semester: 5,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
     {
-      id: "B54",
-      name: "Wahlpflichtmodul (Wirtschafts-)Informatik 2 ",
+      modul_id: 24,
+      modulnummer: "B54",
+      bezeichnung: "Wahlpflichtmodul (Wirtschafts-)Informatik 2",
       semester: 5,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Wirtschaft"
     },
     {
-      id: "B55",
-      name: "Informatik und Gesellschaft",
+      modul_id: 25,
+      modulnummer: "B55",
+      bezeichnung: "Informatik und Gesellschaft",
       semester: 5,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Fachuebergreifend"
     },
     {
-      id: "B56",
-      name: "Projekte in der Wirtschaft ",
+      modul_id: 26,
+      modulnummer: "B56",
+      bezeichnung: "Projekte in der Wirtschaft",
       semester: 5,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Praxis"
     },
     //---------6. Fachsemester----------------
-     {
-      id: "B61",
-      name: "Modellierung von Informationssystemen ",
+    {
+      modul_id: 27,
+      modulnummer: "B61",
+      bezeichnung: "Modellierung von Informationssystemen",
       semester: 6,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
-     {
-      id: "B62",
-      name: "BWL 3: Berufspraxis IT-Wirtschaft",
+    {
+      modul_id: 28,
+      modulnummer: "B62",
+      bezeichnung: "BWL 3: Berufspraxis IT-Wirtschaft",
       semester: 6,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Wirtschaft"
-
     },
-     {
-      id: "B63",
-      name: "AWE-Modul 1",
+    {
+      modul_id: 29,
+      modulnummer: "B63",
+      bezeichnung: "AWE-Modul 1",
       semester: 6,
-      ECTS: 2,
+      ects: 2,
       status: "offen",
       fachgruppe: "Fachuebergreifend",
-      groesse: 0.5
+      raster_groesse_vz: 0.5
     },
-     {
-      id: "B64",
-      name: "AWE-Modul 2",
+    {
+      modul_id: 30,
+      modulnummer: "B64",
+      bezeichnung: "AWE-Modul 2",
       semester: 6,
-      ECTS: 2,
+      ects: 2,
       status: "offen",
       fachgruppe: "Fachuebergreifend",
-      groesse: 0.5
+      raster_groesse_vz: 0.5
     },
-     {
-      id: "B65",
-      name: "Bachelorseminar und Abschlusskolloquium ",
+    {
+      modul_id: 31,
+      modulnummer: "B65",
+      bezeichnung: "Bachelorseminar und Abschlusskolloquium",
       semester: 6,
-      ECTS: 3,
+      ects: 3,
       status: "offen",
       fachgruppe: "Praxis"
     },
-     {
-      id: "B66",
-      name: "Bachelorarbeit",
+    {
+      modul_id: 32,
+      modulnummer: "B66",
+      bezeichnung: "Bachelorarbeit",
       semester: 6,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Praxis",
-      groesse: 2
+      raster_groesse_vz: 2
     },
   ];
   semester1 = this.modules.filter(m => m.semester === 1);
@@ -320,15 +354,15 @@ export class Moduluebersicht
   semester6 = this.modules.filter(m => m.semester === 6);
 
 //-------toll so kann ich die Größe der Kacheln anpassen!--------
-  getModuleWidth(groesse?: number): string 
+  getModuleWidth(rasterGroesseVz?: number): string 
   {
-  if (groesse==undefined)
+  if (rasterGroesseVz==undefined)
   {
     return '131px';
   }
   else
   {
-    return (groesse * 131) + (groesse - 1) * 15 + 'px';
+    return (rasterGroesseVz * 131) + (rasterGroesseVz - 1) * 15 + 'px';
   }
 }
 //--------------------------------------------------Mochdaten------------------------------->
@@ -337,143 +371,160 @@ export class Moduluebersicht
 meineModule: Module[] = [ 
 
     {
-      id: "B11",
-      name: "Programmieren 1",
+      modul_id: 1,
+      modulnummer: "B11",
+      bezeichnung: "Programmieren 1",
       semester: 1,
-      ECTS: 6,
+      ects: 6,
+      status: "offen",
       fachgruppe: "Informatik"
     },
     {
-      id: "B12",
-      name: "Rechnerarchitektur/ Betriebssysteme",
+      modul_id: 2,
+      modulnummer: "B12",
+      bezeichnung: "Rechnerarchitektur/ Betriebssysteme",
       semester: 1,
-      ECTS: 5,
+      ects: 5,
       status: "bestanden",
       fachgruppe: "Informatik"
     },
-       {
-      id: "B13",
-      name: "Grundlegende Konzepte der Informatik",
+    {
+      modul_id: 3,
+      modulnummer: "B13",
+      bezeichnung: "Grundlegende Konzepte der Informatik",
       semester: 1,
-      ECTS: 5,
+      ects: 5,
       status: "bestanden",
       fachgruppe: "Informatik"
     },
-       {
-      id: "B14",
-      name: "BWL 1: Grundlagen der BWL",
+    {
+      modul_id: 4,
+      modulnummer: "B14",
+      bezeichnung: "BWL 1: Grundlagen der BWL",
       semester: 1,
-      ECTS: 5,
+      ects: 5,
       status: "belegt",
       fachgruppe: "Wirtschaft"
     },
     {
-      id: "B25",
-      name: "BWL 2: Rechnungswesen",
+      modul_id: 11,
+      modulnummer: "B25",
+      bezeichnung: "BWL 2: Rechnungswesen",
       semester: 2,
-      ECTS: 5,
+      ects: 5,
       status: "nicht_bestanden",
       fachgruppe: "Wirtschaft"
     },
     {
-      id: "B26",
-      name: "1. Fremdsprache 2",
+      modul_id: 12,
+      modulnummer: "B26",
+      bezeichnung: "1. Fremdsprache 2",
       semester: 2,
-      ECTS: 5,
+      ects: 5,
       status: "vorgemerkt",
       fachgruppe: "Fachuebergreifend"
     },
     {
-      id: "B31",
-      name: "Data Science",
+      modul_id: 13,
+      modulnummer: "B31",
+      bezeichnung: "Data Science",
       semester: 3,
-      ECTS: 5,
+      ects: 5,
       status: "vorgemerkt",
       fachgruppe: "Informatik"
     },
     {
-      id: "B32",
-      name: "Software-Engineering 2",
+      modul_id: 14,
+      modulnummer: "B32",
+      bezeichnung: "Software-Engineering 2",
       semester: 3,
-      ECTS: 5,
+      ects: 5,
       status: "nicht_bestanden",
       fachgruppe: "Informatik"
     },
-      {
-      id: "B54",
-      name: "Wahlpflichtmodul (Wirtschafts-)Informatik 2 ",
+    {
+      modul_id: 24,
+      modulnummer: "B54",
+      bezeichnung: "Wahlpflichtmodul (Wirtschafts-)Informatik 2",
       semester: 5,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Wirtschaft"
     },
     {
-      id: "B55",
-      name: "Informatik und Gesellschaft",
+      modul_id: 25,
+      modulnummer: "B55",
+      bezeichnung: "Informatik und Gesellschaft",
       semester: 5,
-      ECTS: 5,
+      ects: 5,
       status: "belegt",
       fachgruppe: "Fachuebergreifend"
     },
     {
-      id: "B56",
-      name: "Projekte in der Wirtschaft ",
+      modul_id: 26,
+      modulnummer: "B56",
+      bezeichnung: "Projekte in der Wirtschaft",
       semester: 5,
-      ECTS: 5,
+      ects: 5,
       status: "bestanden",
       fachgruppe: "Praxis"
     },
-      {
-      id: "B61",
-      name: "Modellierung von Informationssystemen ",
+    {
+      modul_id: 27,
+      modulnummer: "B61",
+      bezeichnung: "Modellierung von Informationssystemen",
       semester: 6,
-      ECTS: 5,
+      ects: 5,
       status: "offen",
       fachgruppe: "Informatik"
     },
-     {
-      id: "B62",
-      name: "BWL 3: Berufspraxis IT-Wirtschaft",
+    {
+      modul_id: 28,
+      modulnummer: "B62",
+      bezeichnung: "BWL 3: Berufspraxis IT-Wirtschaft",
       semester: 6,
-      ECTS: 5,
+      ects: 5,
       status: "vorgemerkt",
       fachgruppe: "Wirtschaft"
-
     },
-     {
-      id: "B63",
-      name: "AWE-Modul 1",
+    {
+      modul_id: 29,
+      modulnummer: "B63",
+      bezeichnung: "AWE-Modul 1",
       semester: 6,
-      ECTS: 2,
+      ects: 2,
       status: "belegt",
       fachgruppe: "Fachuebergreifend",
-      groesse: 0.5
+      raster_groesse_vz: 0.5
     },
-     {
-      id: "B64",
-      name: "AWE-Modul 2",
+    {
+      modul_id: 30,
+      modulnummer: "B64",
+      bezeichnung: "AWE-Modul 2",
       semester: 6,
-      ECTS: 2,
+      ects: 2,
       status: "belegt",
       fachgruppe: "Fachuebergreifend",
-      groesse: 0.5
+      raster_groesse_vz: 0.5
     },
-     {
-      id: "B65",
-      name: "Bachelorseminar und Abschlusskolloquium ",
+    {
+      modul_id: 31,
+      modulnummer: "B65",
+      bezeichnung: "Bachelorseminar und Abschlusskolloquium",
       semester: 6,
-      ECTS: 3,
+      ects: 3,
       status: "belegt",
       fachgruppe: "Praxis"
     },
-     {
-      id: "B66",
-      name: "Bachelorarbeit",
+    {
+      modul_id: 32,
+      modulnummer: "B66",
+      bezeichnung: "Bachelorarbeit",
       semester: 6,
-      ECTS: 5,
+      ects: 5,
       status: "belegt",
       fachgruppe: "Praxis",
-      groesse: 2
+      raster_groesse_vz: 2
     }
   //------meine schönen semesterzeilen---------->
   ];

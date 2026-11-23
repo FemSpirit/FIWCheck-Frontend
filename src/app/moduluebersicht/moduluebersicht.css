@@ -2,6 +2,7 @@
 .moduluebersicht-container
 {
   display: flex;
+  align-items: flex-start;
   gap: 20px;
   padding: 24px 32px;
   background-color: #f9fae6;
@@ -11,6 +12,8 @@
 .modul-bereich
 {
   width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
   min-width: 887.56px;
 }
 .modul-bereich h1
@@ -21,7 +24,8 @@
 /*-----------------------Reiter Zeile----------------------- */
 .reiter-zeile 
 {
-  display: flex;       /* Zwingt die Elemente nebeneinander */
+  display: flex;  
+  flex-wrap: wrap;     /* Zwingt die Elemente nebeneinander */
   gap: 15px; 
   margin-bottom: 82px; /* Schafft Abstand zur Status-Zeile darunter */
   width: 100%;
@@ -269,7 +273,6 @@ background-color: #e7ae3d;
   padding: 10px 18px;                         /* Innenabstand: 10px oben/unten, 18px links/rechts */
   border-radius: 12px;                        /* Rundet die Ecken des Buttons um 12px ab */
   border: 2px solid transparent;              /* Unsichtbarer Rahmen vorab, damit beim Hover nichts verrutscht */
-  border-radius: 12px;                         /* Rundet die Ecken des Buttons um 12px ab */
 
   background-color: #c7e298;                /* Hintergrundfarbe des Buttons */
   color: #1f2910;                           /* Schriftfarbe des Button-Textes */
@@ -295,6 +298,7 @@ background-color: #e7ae3d;
   line-height: 1.65;
   color: #1f2910;
   margin-top: 24px;
+  max-width: 820px;
 }
 .stupo-inhalt h2
 {
