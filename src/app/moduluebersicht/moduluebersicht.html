@@ -45,9 +45,11 @@
   (mouseenter)="setzeHervorgehobeneFachgruppe('Praxis')"
   (mouseleave)="leereHervorgehobeneFachgruppe()"
   >Module Praxis</div>
-
 </div>
 }
+
+
+<!-------------------------Hier beginnt die StuPo Seite--------------------->
 @if (aktiverReiter === 'stupo')
 {
 <div class="stupo-links">
@@ -64,7 +66,9 @@
     target="_blank"
     > Zur originalen HTW-StuPo2014 (PDF)
     </a>
- </div>   
+ </div> 
+ 
+ <!------------------------Hier habe ich den Inhalt der Seite hard codiert------------->
  <div class="stupo-inhalt">
      <h2>Studien-, und Prüfungsordnung 2024</h2>
           <h3>Allgemein</h3>
@@ -177,72 +181,78 @@
 <!-------Zeile für Semester 6------->
      <div class="semester-zeile">
      6.
-     @for (module of semester6; track module.id) 
+     @for (module of semester6; track module.modul_id) 
      {
     <div class="modul-kachel {{module.fachgruppe.toLowerCase() }}" 
-    [style.width]="getModuleWidth(module.groesse) "
+    [routerLink]="['/moduldetails', module.modul_id]"
+    [style.width]="getModuleWidth(module.raster_groesse_vz) "
     [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe"
-    >{{ module.name }}
+    >{{ module.bezeichnung }}
     </div>
      }
     </div>
 <!-------Zeile für Semester 5------->
      <div class="semester-zeile">
      5.
-     @for (module of semester5; track module.id) 
+     @for (module of semester5; track module.modul_id) 
      {
     <div class="modul-kachel {{module.fachgruppe.toLowerCase()}}" 
-    [style.width]="getModuleWidth(module.groesse)"
+    [routerLink]="['/moduldetails', module.modul_id]"
+    [style.width]="getModuleWidth(module.raster_groesse_vz)"
     [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe"  
-    >{{ module.name }}
+    >{{ module.bezeichnung }}
     </div>
      }
      </div>
 <!-------Zeile für Semester 4------->
      <div class="semester-zeile">
      4.
-     @for (module of semester4; track module.id) 
+     @for (module of semester4; track module.modul_id) 
      {
     <div class="modul-kachel {{module.fachgruppe.toLowerCase()}}" 
-    [style.width]="getModuleWidth(module.groesse)"
+    [routerLink]="['/moduldetails', module.modul_id]"
+    [style.width]="getModuleWidth(module.raster_groesse_vz)"
     [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
-    >{{ module.name }}
+    >{{ module.bezeichnung }}
     </div>
      }
      </div>
 <!------Zeile für Semester 3------->
      <div class="semester-zeile">
      3.
-     @for (module of semester3; track module.id) 
+     @for (module of semester3; track module.modul_id) 
      {
     <div class="modul-kachel {{module.fachgruppe.toLowerCase()}}" 
-    [style.width]="getModuleWidth(module.groesse)"
+    [routerLink]="['/moduldetails', module.modul_id]"
+    [style.width]="getModuleWidth(module.raster_groesse_vz)"
     [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
-    >{{ module.name }}
+    >{{ module.bezeichnung }}
     </div>
      }
      </div>
 <!------Zeile für Semester 2------->
      <div class="semester-zeile">
      2.
-     @for (module of semester2; track module.id) 
+     @for (module of semester2; track module.modul_id) 
      {
    <div class="modul-kachel {{module.fachgruppe.toLowerCase()}}" 
-   [style.width]="getModuleWidth(module.groesse)"
+   [routerLink]="['/moduldetails', module.modul_id]"
+   [style.width]="getModuleWidth(module.raster_groesse_vz)"
    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
-   >{{ module.name }}
+   >{{ module.bezeichnung }}
     </div>
      }
      </div>
 <!-------Zeile für Semester 1------->
      <div class="semester-zeile">
      1.
-     @for (module of semester1; track module.id) 
+     @for (module of semester1; track module.modul_id) 
      {
    <div class="modul-kachel {{module.fachgruppe.toLowerCase()}}" 
-   [style.width]="getModuleWidth(module.groesse)"
+   [routerLink]="['/moduldetails', module.modul_id]"
+   [style.width]="getModuleWidth(module.raster_groesse_vz)"
    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
-   >{{ module.name }}
+   >{{ module.bezeichnung }}
     </div>
      }
      </div>
@@ -283,107 +293,114 @@
       <!-------Zeile für Semester 8------->
      <div class="semester-zeile">
      8.
-     @for (module of eigeneSemester8; track module.id) 
+     @for (module of eigeneSemester8; track module.modul_id) 
      {
     <div class="modul-kachel {{module.fachgruppe.toLowerCase() }} status-{{ statusOderOffen(module) }}" 
-    [style.width]="getModuleWidth(module.groesse) "
+    [routerLink]="['/moduldetails', module.modul_id]"
+    [style.width]="getModuleWidth(module.raster_groesse_vz) "
     [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe"
     [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
-    >{{ module.name }}
+    >{{ module.bezeichnung }}
     </div>
      }
     </div>
           <!-------Zeile für Semester 7------->
      <div class="semester-zeile">
      7.
-     @for (module of eigeneSemester7; track module.id) 
+     @for (module of eigeneSemester7; track module.modul_id) 
      {
     <div class="modul-kachel {{module.fachgruppe.toLowerCase() }} status-{{ statusOderOffen(module) }}" 
-    [style.width]="getModuleWidth(module.groesse) "
+    [routerLink]="['/moduldetails', module.modul_id]"
+    [style.width]="getModuleWidth(module.raster_groesse_vz) "
     [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe"
     [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
-    >{{ module.name }}
+    >{{ module.bezeichnung }}
     </div>
      }
     </div>
         <!-------Zeile für Semester 6------->
      <div class="semester-zeile">
      6.
-     @for (module of eigeneSemester6; track module.id) 
+     @for (module of eigeneSemester6; track module.modul_id) 
      {
     <div class="modul-kachel {{module.fachgruppe.toLowerCase() }} status-{{ statusOderOffen(module) }}" 
-    [style.width]="getModuleWidth(module.groesse) "
+    [routerLink]="['/moduldetails', module.modul_id]"
+    [style.width]="getModuleWidth(module.raster_groesse_vz) "
     [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe"
     [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
-    >{{ module.name }}
+    >{{ module.bezeichnung }}
     </div>
      }
     </div>
 <!-------Zeile für Semester 5------->
      <div class="semester-zeile">
      5.
-     @for (module of eigeneSemester5; track module.id) 
+     @for (module of eigeneSemester5; track module.modul_id) 
      {
     <div class="modul-kachel {{module.fachgruppe.toLowerCase()}} status-{{ statusOderOffen(module) }}" 
-    [style.width]="getModuleWidth(module.groesse)"
+    [routerLink]="['/moduldetails', module.modul_id]"
+    [style.width]="getModuleWidth(module.raster_groesse_vz)"
     [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe"  
     [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
-    >{{ module.name }}
+    >{{ module.bezeichnung }}
     </div>
      }
      </div>
 <!-------Zeile für Semester 4------->
      <div class="semester-zeile">
      4.
-     @for (module of eigeneSemester4; track module.id) 
+     @for (module of eigeneSemester4; track module.modul_id) 
      {
     <div class="modul-kachel {{module.fachgruppe.toLowerCase()}} status-{{ statusOderOffen(module) }}" 
-    [style.width]="getModuleWidth(module.groesse)"
+    [routerLink]="['/moduldetails', module.modul_id]"
+    [style.width]="getModuleWidth(module.raster_groesse_vz)"
     [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
     [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
-    >{{ module.name }}
+    >{{ module.bezeichnung }}
     </div>
      }
      </div>
 <!------Zeile für Semester 3------->
      <div class="semester-zeile">
      3.
-     @for (module of eigeneSemester3; track module.id) 
+     @for (module of eigeneSemester3; track module.modul_id) 
      {
     <div class="modul-kachel {{module.fachgruppe.toLowerCase()}} status-{{ statusOderOffen(module) }}" 
-    [style.width]="getModuleWidth(module.groesse)"
+    [routerLink]="['/moduldetails', module.modul_id]"
+    [style.width]="getModuleWidth(module.raster_groesse_vz)"
     [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
     [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
-    >{{ module.name }}
+    >{{ module.bezeichnung }}
     </div>
      }
      </div>
 <!------Zeile für Semester 2------->
      <div class="semester-zeile">
      2.
-     @for (module of eigeneSemester2; track module.id) 
+     @for (module of eigeneSemester2; track module.modul_id) 
      {
    <div class="modul-kachel {{module.fachgruppe.toLowerCase()}} status-{{ statusOderOffen(module) }}" 
-   [style.width]="getModuleWidth(module.groesse)"
+   [routerLink]="['/moduldetails', module.modul_id]"
+   [style.width]="getModuleWidth(module.raster_groesse_vz)"
    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
    [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
-   >{{ module.name }}
+   >{{ module.bezeichnung }}
     </div>
      }
      </div>
 <!-------Zeile für Semester 1------->
      <div class="semester-zeile">
      1.
-     @for (module of eigeneSemester1; track module.id) 
+     @for (module of eigeneSemester1; track module.modul_id) 
      {
    <div class="modul-kachel {{module.fachgruppe.toLowerCase()}} status-{{ statusOderOffen(module) }}" 
-   [style.width]="getModuleWidth(module.groesse)"
+   [routerLink]="['/moduldetails', module.modul_id]"
+   [style.width]="getModuleWidth(module.raster_groesse_vz)"
    [class.hervorgehoben]="hervorgehobeneFachgruppe === module.fachgruppe" 
    [class.hervorgehoben-status]="hervorgehobeneStatus === statusOderOffen(module)"
-   >{{ module.name }}
+   >{{ module.bezeichnung }}
     </div>
      }
      </div>
      }
   </div>
-</div>

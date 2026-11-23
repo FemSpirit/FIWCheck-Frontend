@@ -2,7 +2,8 @@ import {Routes} from '@angular/router';
 import {SidebarComponent} from './sidebar/sidebar';
 import {Startseite } from './startseite/startseite';
 import {Profil} from './profil/profil';
-import {Stundenplan} from './stundenplan/stundenplan';
+import {Semesterplan} from './semesterplan/semesterplan';
+import {Noten} from './noten/noten';
 import {Moduluebersicht} from './moduluebersicht/moduluebersicht';
 import {Stupo} from './stupo/stupo';
 import {Kalender} from './kalender/kalender';
@@ -19,7 +20,8 @@ export const routes: Routes = [
     {path: 'sidebar', component: SidebarComponent},
     {path: 'startseite', component: Startseite},
     {path: 'profil', component: Profil},
-    {path: 'stundenplan', component: Stundenplan},
+    {path: 'semesterplan', component: Semesterplan},
+    {path: 'noten', component: Noten},
     {path: 'moduluebersicht', component: Moduluebersicht},
     {path: 'stupo', component: Stupo},
     {path: 'kalender', component: Kalender},
