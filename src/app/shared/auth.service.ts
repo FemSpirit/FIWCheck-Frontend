@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject} from 'rxjs';
 import { User } from './user';
 import { environment } from '../../environments/environment';
 
@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   loginUser(email: string, password: string): Observable<any>{
-    return this.http.post(this.baseUrl + '/user/login', { email: email, password: password }, { observe: 'response' });
+    return this.http.post(this.baseUrl + '/login', { email: email, password: password }, { observe: 'response' });
   }
 
   isLoggedin(): boolean {
