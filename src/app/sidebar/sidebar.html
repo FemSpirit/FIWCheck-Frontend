@@ -13,8 +13,9 @@
 
         </div>
     </div>
-
+    <!-- Geschuetzte Navigation, nur fuer eingeloggte User  -->
     <nav class="nav-section main-nav">
+        @if (isLoggedIn()) {
         @for (item of mainNavItems; track item.route) {
         <a [routerLink]="item.route" routerLinkActive="active" class="nav-item">
             <span class="material-icons">{{ item.icon }}</span>
@@ -23,9 +24,22 @@
             }
         </a>
         }
+        } @else {
+        <!-- Oeffentliche Navigation -->
+        @for (item of publicNavItems; track item.route) {
+        <a [routerLink]="item.route" routerLinkActive="active" class="nav-item">
+            <span class="material-icons">{{ item.icon }}</span>
+            @if (!isCollapsed()) {
+            <span class="label">{{ item.label }}</span>
+            }
+        </a>
+        }
+        }
     </nav>
 
     <div class="nav-section bottom-nav">
+
+        @if (isLoggedIn()) {
         @for (item of bottomNavItems; track item.route) {
         <a [routerLink]="item.route" routerLinkActive="active" class="nav-item">
             <span class="material-icons">{{ item.icon }}</span>
@@ -35,11 +49,20 @@
         </a>
         }
 
-            <button class="nav-item logout-btn" (click)="onLogout()">
+        <button class="nav-item logout-btn" (click)="onLogout()">
             <span class="material-icons">logout</span>
             @if (!isCollapsed()) {
             <span class="label">Log Out</span>
             }
         </button>
+
+        } @else {
+        <a routerLink="/login" routerLinkActive="active" class="nav-item">
+            <span class="material-icons">login</span>
+            @if (!isCollapsed()) {
+            <span class="label">Einloggen</span>
+            }
+        </a>
+        }
     </div>
 </aside>
