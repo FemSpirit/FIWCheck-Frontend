@@ -1,5 +1,6 @@
 import {Routes} from '@angular/router';
 import {SidebarComponent} from './sidebar/sidebar';
+import { SidebarRechtsComponent } from './sidebar-rechts/sidebar-rechts';
 import {Startseite } from './startseite/startseite';
 import {Profil} from './profil/profil';
 import {Semesterplan} from './semesterplan/semesterplan';
@@ -18,6 +19,7 @@ import {Moduldetails} from './moduldetails/moduldetails';
 export const routes: Routes = [
     {path: '', component: Startseite},
     {path: 'sidebar', component: SidebarComponent},
+    {path: 'sidebar-rechts', component: SidebarRechtsComponent},
     {path: 'startseite', component: Startseite},
     {path: 'profil', component: Profil},
     {path: 'semesterplan', component: Semesterplan},
