@@ -1,0 +1,29 @@
+<aside class="sidebar" [class.collapsed]="isCollapsed()">
+  <div class="header">
+    @if (!isCollapsed()) { <span class="label-top">DEIN PROFIL</span> }
+    <button class="toggle" type="button" (click)="toggleSidebar()" aria-label="Seitenleiste umschalten">
+      <span class="material-icons">{{ isCollapsed() ? 'arrow_circle_left' : 'arrow_circle_right' }}</span>
+    </button>
+  </div>
+
+  
+  @if (!isCollapsed()) {
+    <img [src]="avatarUrl" alt="Profilbild" class="avatar" />
+    <h2>{{ name() }}</h2>
+    <p class="intro">Hier siehst du, wo du in deinem Studium stehst.</p>
+
+    <div class="card">
+      <span>LP bestanden von {{ lpGesamt }}</span>
+      <b>{{ lpBestanden() }}</b>
+      <div class="bar"><div [style.width.%]="fortschritt()"></div></div>
+    </div>
+    <div class="card">
+      <span>Gewichteter Notenschnitt</span>
+      <b>{{ notenschnittText() }}</b>
+    </div>
+    <div class="card">
+      <span>Belegte Module dieses Semester</span>
+      <b>{{ moduleDiesesSemester() }}</b>
+    </div>
+  }
+</aside>
