@@ -13,7 +13,8 @@ import { AuthService } from '../shared/auth.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmComponent } from './confirm/confirm.component';
 
-export interface DialogData {
+export interface DialogData 
+{
   headline: string;
   info: string;
 }
@@ -36,11 +37,13 @@ export interface DialogData {
     MatDialogModule
   ]
 })
-export class Registrierung {
+export class Registrierung 
+{
   private auth = inject(AuthService);
   public dialog = inject(MatDialog);
 
-  registerForm = new FormGroup({
+  registerForm = new FormGroup
+  ({
     username: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     password2: new FormControl('', [Validators.required, Validators.minLength(8)]),
@@ -71,11 +74,15 @@ export class Registrierung {
     return check;
   }
 
-  differentPassword(): boolean {
+  differentPassword(): boolean 
+  {
     const check = this.registerForm.dirty && this.registerForm.value.password != this.registerForm.value.password2;
-    if(check) {
+    if(check) 
+      {
       this.registerForm.controls.password2.setErrors({'incorrect': true});
-    } else {
+    } 
+    else 
+      {
       this.registerForm.controls.password2.setErrors(null); // Korrigiert: null entfernt den Fehler sauber
     }
     console.log('check : ', check);
@@ -96,13 +103,14 @@ export class Registrierung {
       this.auth.registerUser(this.user).subscribe({
         next: (response) => {
           console.log('response', response);
-          this.openDialog({ headline: "Erfolg", info: "User " + response.name + " registriert!" });
+          this.openDialog({ headline: "Erfolg", info: "User " + response.username + " registriert!" });
         },
         error: (err) => {
           console.log('HttpErrorResponse : ', err);
           
           if (err.status === 400 && err.error) {
             const backendErrors = err.error;
+            
             if (backendErrors.email) {
               this.registerForm.controls['email'].setErrors({ serverError: backendErrors.email });
             }
@@ -112,9 +120,21 @@ export class Registrierung {
             if (backendErrors.password) {
               this.registerForm.controls['password'].setErrors({ serverError: backendErrors.password });
             }
-          } else {
+            if (!backendErrors.email && !backendErrors.username && !backendErrors.password) {
+            this.openDialog({ headline: "Fehler", info: "Die Eingaben wurden vom Server abgelehnt. Bitte prüfe sie." });
+            }
+           
+           } 
+           else if (err.status === 409) 
+          {
             this.openDialog({ headline: "Fehler", info: "Diese E-Mail existiert bereits, bitte wähle eine andere" });
           }
+
+          else if (err.status === 0) 
+          {
+            this.openDialog({ headline: "Server nicht erreichbar", info: "Das Backend antwortet nicht. Bitte versuche es später noch einmal." });
+          }
+          
         },
         complete: () => console.log('register completed')
       });
