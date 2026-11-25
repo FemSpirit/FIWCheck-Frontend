@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import type { DialogData } from '../registrierung';
 
 @Component({
-  selector: 'app-confirm',
+  selector: 'app-confirm', /*hier auch nicht verwendet, öffnet sich über MatDialog.open */
   standalone: true,
   imports: [
     MatDialogTitle, 
@@ -16,7 +16,8 @@ import type { DialogData } from '../registrierung';
   templateUrl: './confirm.component.html',
   styleUrl: './confirm.component.css'
 })
-export class ConfirmComponent {
+export class ConfirmComponent 
+{
    data: DialogData = inject(MAT_DIALOG_DATA);
   private router = inject(Router);
   private dialogRef = inject(MatDialogRef<ConfirmComponent>);

@@ -4,7 +4,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { User } from '../shared/user';
@@ -31,7 +30,6 @@ export interface DialogData
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
-    MatRadioModule,
     MatCardModule,
     ReactiveFormsModule,
     MatDialogModule
@@ -56,7 +54,7 @@ export class Registrierung
   });
 
   roles = [ "admin", "user"];
-  hide = true;
+  hide = true; /*Behälter zum Speichern*/
   hide2 = true;
   user!: User;
 
@@ -83,7 +81,7 @@ export class Registrierung
     } 
     else 
       {
-      this.registerForm.controls.password2.setErrors(null); // Korrigiert: null entfernt den Fehler sauber
+    this.registerForm.controls.password2.updateValueAndValidity(); // rechnet alle Regeln des Feldes neu aus
     }
     console.log('check : ', check);
     return check;
@@ -91,24 +89,28 @@ export class Registrierung
 
   onSubmit(): void {
     const values = this.registerForm.value;
-    this.user = {
+    this.user = 
+    {
       username: values.username!,
       password: values.password!,
       email: values.email!,
       role: values.role!
     };
     console.log(this.user);
-    if(this.valid()) {
+    if(this.valid()) 
+      {
       console.log('eingaben gueltig! Registrierung wird vorgenommen');
-      this.auth.registerUser(this.user).subscribe({
-        next: (response) => {
+
+      this.auth.registerUser(this.user).subscribe(
+        {
+        next: (response) => { /* server antwortet mit erfolg 201 created*/
           console.log('response', response);
           this.openDialog({ headline: "Erfolg", info: "User " + response.username + " registriert!" });
         },
-        error: (err) => {
+        error: (err) => { /* fehler 400/409/0*/
           console.log('HttpErrorResponse : ', err);
           
-          if (err.status === 400 && err.error) {
+          if (err.status === 400 && err.error) { /*Die Eingaben sind ungültig, der Server lehnt sie ab.*/ 
             const backendErrors = err.error;
             
             if (backendErrors.email) {
@@ -120,17 +122,17 @@ export class Registrierung
             if (backendErrors.password) {
               this.registerForm.controls['password'].setErrors({ serverError: backendErrors.password });
             }
-            if (!backendErrors.email && !backendErrors.username && !backendErrors.password) {
+            if (!backendErrors.email && !backendErrors.username && !backendErrors.password) { /*Das ist ein Auffangnetz. Ohne diesen Block würde bei einem 400 ohne Feldnamen nichts passieren, und der Nutzer sähe gar keine Reaktion.*/
             this.openDialog({ headline: "Fehler", info: "Die Eingaben wurden vom Server abgelehnt. Bitte prüfe sie." });
             }
            
            } 
-           else if (err.status === 409) 
+           else if (err.status === 409) /*Die Anfrage kollidiert mit etwas, das schon existiert: Die E-Mail ist schon registriert*/
           {
             this.openDialog({ headline: "Fehler", info: "Diese E-Mail existiert bereits, bitte wähle eine andere" });
           }
 
-          else if (err.status === 0) 
+          else if (err.status === 0) /* Es kam gar keine Antwort vom Server.*/
           {
             this.openDialog({ headline: "Server nicht erreichbar", info: "Das Backend antwortet nicht. Bitte versuche es später noch einmal." });
           }
@@ -138,12 +140,11 @@ export class Registrierung
         },
         complete: () => console.log('register completed')
       });
-    } else {
-      console.log('eingaben ungueltig! Registrierung wird abgelehnt');
-    }
+    } 
+   
   }
-
-  openDialog(data: DialogData) {
+  openDialog(data: DialogData) 
+  {
     this.dialog.open(ConfirmComponent, { data: data });
   }
 }
