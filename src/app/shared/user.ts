@@ -1,4 +1,5 @@
-export interface User {
+export interface User 
+{
   username: string;
   email: string;
   password?: string;
@@ -6,10 +7,12 @@ export interface User {
 }
 //interfaces für login request und jwt antwort
 
-export interface LoginRequest{
+export interface LoginRequest
+{
   email: string;
   password: string;
 }
-export interface LoginResponse{
+export interface LoginResponse
+{
   token:string;
 }

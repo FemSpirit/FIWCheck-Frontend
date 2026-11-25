@@ -14,7 +14,8 @@ export class AuthService {
   loggedIn = false;
   loggedInChange: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) 
+  {
     this.loggedInChange.subscribe((value) => {
       this.loggedIn = value;
     });
@@ -31,7 +32,8 @@ export class AuthService {
     return this.http.get<User>(this.baseUrl + '/users/' + username);
   }
 
-  registerUser(user: User): Observable<any> {
+  registerUser(user: User): Observable<any> 
+  {
     return this.http.post(this.baseUrl + '/user/register', user);
   }
 
