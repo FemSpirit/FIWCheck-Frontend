@@ -31,6 +31,12 @@
           placeholder="Dein Name"
           class="input-field"
         />
+       <!-- Button um Name unabhängig von den Studiendaten zu ändern -->
+        <button type="button"
+        class="btn-secondary"
+        (click)="onNameChange()">
+            Namen speichern
+           </button>
       </div>
 
       <!-- FELD 2: HTW-Mail (aus der User-Tabelle, dauerhaft gesperrt) -->
@@ -108,6 +114,23 @@
         </select>
       </div>
 
+
+
+      <!-- FELD 8: Checkbox für Studienberatung -->      <label class="checkbox-box">
+        <input type="checkbox" [(ngModel)]="profil.studienberatung" name="studienberatung" />
+        <span>Ich würde gerne eine Studienberatung in Anspruch nehmen</span>
+      </label>
+
+      <div *ngIf="errorMessage" class="error-banner">
+        {{ errorMessage }}
+      </div>
+      
+      <div *ngIf="saveSuccessMessage" class="success-banner">
+        {{ saveSuccessMessage }}
+      </div>
+      <button type="submit" class="save-btn">Speichern</button>
+    </form>
+  
 <!--  NEU: Passwort ändern: eigene Karte mit eigenem Formular -->
 <div class="pw-box">
   <div class="pw-row">
@@ -148,24 +171,17 @@
 
   <button type="submit" class="save-btn">Passwort aktualisieren</button>
 </form>
+</div>
 
+<div class="delete-account-box">
+  <button type="button"
+          class="btn-delete"
+          (click)="onDeleteAccount()">
+    Benutzerkonto löschen
+  </button>
+</div>
     
 </div>
-
-      <!-- FELD 8: Checkbox für Studienberatung -->      <label class="checkbox-box">
-        <input type="checkbox" [(ngModel)]="profil.studienberatung" name="studienberatung" />
-        <span>Ich würde gerne eine Studienberatung in Anspruch nehmen</span>
-      </label>
-
-      <div *ngIf="saveSuccessMessage" class="success-banner">
-        {{ saveSuccessMessage }}
-      </div>
-
-      <button type="submit" class="save-btn">Speichern</button>
-    </form>
-  </div>
-</div>
-
 <!-- Bestätigungsmodal -->
 <div class="modal-backdrop" *ngIf="showConfirmModal">
   <div class="modal-card">
@@ -182,4 +198,32 @@
       <button type="button" class="btn-primary" (click)="confirmFirstSave()">Verbindlich speichern</button>
     </div>
   </div>
+
+  <!-- Bestätigungsmodal -->
+  <button type="button"
+        class="btn-secondary"
+        (click)="onDeleteAccount()">
+  Benutzerkonto löschen
+</button>
+</div>
+
+</div>
+    
+<!-- Bestätigungsmodal -->
+<div class="modal-backdrop" *ngIf="showConfirmModal">
+  <div class="modal-card">
+    <h3>Studiendaten verbindlich speichern?</h3>
+    <p>
+      Bitte beachte: Deine Auswahl für <strong>StuPO ({{ profil.stupo }})</strong> und
+      <strong>Startsemester ({{ profil.studiumBeginn }})</strong> wird einmalig festgelegt und kann
+      danach nicht mehr bearbeitet werden.
+    </p>
+    <div class="modal-actions">
+      <!-- Schließt das Modal ohne zu speichern -->
+      <button type="button" class="btn-secondary" (click)="cancelModal()">Abbrechen</button>
+      <!-- Bestätigt die Auswahl, sperrt StuPO/Startsemester und speichert -->
+      <button type="button" class="btn-primary" (click)="confirmFirstSave()">Verbindlich speichern</button>
+    </div>
+  </div>
+
 </div>
