@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface StudentProfil {
   userId: number | null;
@@ -28,11 +29,18 @@ export interface Studieninformationen {
 })
 export class UserService {
   // Passend zu @RequestMapping("/user") in UserController.java
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = environment.apiUrl;
   private userURL = `${this.baseUrl}/user`;
   private profileURL = `${this.baseUrl}/studentprofil`;
 
   constructor(private http: HttpClient) {}
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+  
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+  }
 
   // Ruft @GetMapping("/{id}") im Backend auf -> GET http://localhost:8080/user/{id}
   getProfil(): Observable<StudentProfil> {
@@ -41,7 +49,7 @@ export class UserService {
 
   // PATCH/ user/{id} -> Name ändern
   updateName(userId: number, name: string): Observable<StudentProfil> {
-    return this.http.patch<StudentProfil>(`${this.userURL}/${userId}`, { name });
+    return this.http.patch<StudentProfil>(`${this.userURL}/${userId}`, {username: name }, { headers: this.getAuthHeaders() });
   }
 
   // PUT /studentprofil/studieninformationen -> Studiendaten speichern
@@ -52,7 +60,7 @@ export class UserService {
 
   // DELETE /user/{id} -> Konto löschen 
   deleteAccount(userId: number): Observable<void> {
-    return this.http.delete<void>(`${this.userURL}/${userId}`);
+    return this.http.delete<void>(`${this.userURL}/${userId}`, { headers: this.getAuthHeaders() });
   }
 
   // Passwort ändern
