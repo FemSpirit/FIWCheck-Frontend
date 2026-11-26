@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -54,8 +55,19 @@ export class Login implements OnInit {
       next: (response: any) => {
         console.log('Server-Antwort beim Login:', response);
         const token = response.body?.token;
+        //Zum decoden vom JWT
         if (token) {
-          localStorage.setItem('token', token);
+          const decoded = jwtDecode<{
+            userId: number;
+            role: string;
+          } >(token)
+         localStorage.setItem('token', token);
+         if (Number.isSafeInteger(decoded.userId) && decoded.userId > 0) {
+          localStorage.setItem('user_id', String(decoded.userId));
+        } else {
+          localStorage.removeItem('user_id');
+        }
+       
           // Login Status wird auf true gesetzt 
           this.authService.login({
             username: '',
