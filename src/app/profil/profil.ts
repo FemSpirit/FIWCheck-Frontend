@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { UserService, StudentProfil } from '../services/user.service';
 import { MatIcon } from '@angular/material/icon';
 import { AuthService } from '../shared/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { AuthService } from '../shared/auth.service';
   styleUrl: './profil.css'
 })
 export class Profil implements OnInit {
-  userId: number = 1;
+  userId: number | null = null;
 
   // Exakte Attributnamen passend zum ER-Modell (User, Student, Stupo)
 
@@ -62,7 +63,7 @@ export class Profil implements OnInit {
   constructor(
     private authService: AuthService,
     private userService: UserService, //hat gefehlt
-    
+    private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
@@ -70,7 +71,7 @@ export class Profil implements OnInit {
     // Da SSR aktiviert ist, greifen wir nur im Browser sicher auf localStorage zu
     if (isPlatformBrowser(this.platformId)) {
       const storedId = localStorage.getItem('user_id');
-      if (storedId) {
+      if (storedId && Number.isSafeInteger(Number(storedId)) && Number(storedId) > 0) {
         this.userId = Number(storedId);
       }
       this.ladeProfildaten();
@@ -84,16 +85,17 @@ export class Profil implements OnInit {
     this.authService.getStudentprofil().subscribe({
       next: (daten) => {
 
-        this.profil.name = daten.username ?? '';
+        this.profil.name = daten.name ?? '';
         this.profil.email = daten.email ?? '';
         this.profil.stupo = daten.stupoId === 1 ? 'StuPO 2024' : daten.stupoId === 2 ? 'StuPO 2014' : '';
-        this.profil.studiumBeginn = this.mapSemesterNumberToText(daten.startsemester);
+        this.profil.studiumBeginn = daten.startsemester ?? '';
         this.profil.aweVariante = this.mapAweShortToText(daten.aweVariante);
         this.profil.studiendatenLocked = Boolean(daten.stupoId && daten.startsemester && daten.aweVariante);
         this.isLoading = false;
       },
       error: () => {
         // Fallback: Falls das Backend lokal nicht läuft oder User noch nicht existiert
+        this.errorMessage = 'Profildaten konnten nicht geladen werden';
         this.isLoading = false;
       }
     });
@@ -115,6 +117,10 @@ export class Profil implements OnInit {
     }
     if (this.neuesPasswort !== this.neuesPasswortBestaetigen) {
       this.passwordErrorMessage = 'Die Passwörter stimmen nicht überein.';
+      return;
+    }
+    if (this.userId == null) {
+      this.passwordErrorMessage = 'User-ID fehlt';
       return;
     }
 
@@ -143,7 +149,6 @@ export class Profil implements OnInit {
   }
 
   confirmFirstSave(): void {
-    this.profil.studiendatenLocked = true;
     this.showConfirmModal = false;
     this.speichernAusfuehren();
   }
@@ -153,33 +158,100 @@ export class Profil implements OnInit {
   }
 
   private speichernAusfuehren(): void {
-    this.saveSuccessMessage = 'Deine Angaben wurden erfolgreich gespeichert!';
-    setTimeout(() => (this.saveSuccessMessage = ''), 3500);
+    const daten = {
+      stupoId: this.profil.stupo === 'StuPO 2024' ? 1 :
+               this.profil.stupo === 'StuPO 2014' ? 2 : 0,
+
+      startsemester: this.profil.studiumBeginn,
+
+      aweVariante: this.profil.aweVariante.startsWith('Variante 1') ? 1 :
+                   this.profil.aweVariante.startsWith('Variante 2') ? 2 :
+                   this.profil.aweVariante.startsWith('Variante 3') ? 3 : 0
+  };
+  // Pflichtfelder überprüfen
+  if (!daten.stupoId || !daten.startsemester || !daten.aweVariante) {
+    this.errorMessage = 'Bitte alle Studiendaten auswählen.';
+    return;
+}
+
+this.errorMessage = '';
+
+// PUT-Anfrage an das Backend
+this.authService.updateStudieninformationen(daten).subscribe({
+    next: () => {
+        this.profil.studiendatenLocked = true;
+
+        this.saveSuccessMessage =
+            'Deine Angaben wurden erfolgreich gespeichert!';
+
+        setTimeout(() => (this.saveSuccessMessage = ''), 3500);
+    },
+    error: () => {
+        this.errorMessage =
+            'Fehler beim Speichern der Studiendaten.';
+    }
+  });
   }
-  //Wandelt den ausgewählten Text in BA Format
-  private mapSemesterTextToNumber(text: string): number {
-    const match = text.match(/(\d{4})/);
-    return match ? Number(`${match[1]}2`) : 20242;
+  // PATCH-Anfrage: Namen des Benutzers ändern
+onNameChange(): void {
+  this.errorMessage = '';
+  this.saveSuccessMessage = '';
+
+  if (this.userId === null) {
+    this.errorMessage = 'User-ID fehlt';
+    return;
   }
-  //Hier genau anders herum
-  private mapSemesterNumberToText(sem?: number): string {
-    if (!sem) return '';
-    const jahr = Math.floor(sem / 10);
-    const kurz = String((jahr + 1) % 100).padStart(2, '0');
-    return `WiSe ${jahr}/${kurz}`;
+
+  if (!this.profil.name.trim()) {
+    this.errorMessage = 'Bitte einen Namen eingeben';
+    return;
   }
-   //Kürzt den AWE Text auf max länge der DB Spalte
-  private mapAweTextToShort(text: string): string {
-    if (text.startsWith('Variante 1')) return 'Variante 1';
-    if (text.startsWith('Variante 2')) return 'Variante 2';
-    if (text.startsWith('Variante 3')) return 'Variante 3';
-    return text.substring(0, 10);
+
+  this.userService.updateName(
+    this.userId,
+    this.profil.name.trim()
+  ).subscribe({
+    next: () => {
+      this.saveSuccessMessage = 'Name erfolgreich geändert';
+    },
+    error: () => {
+      this.errorMessage = 'Fehler beim Ändern des Namens';
+    }
+  });
+}
+
+// DELETE Benutzerkonto löschen
+onDeleteAccount(): void {
+  this.errorMessage = '';
+
+  if (this.userId === null) {
+    this.errorMessage = 'User-ID fehlt.';
+    return;
   }
-   //Hier genau anders herum
-  private mapAweShortToText(short?: string): string {
-    if (short === 'Variante 1') return this.aweOptionen[0];
-    if (short === 'Variante 2') return this.aweOptionen[1];
-    if (short === 'Variante 3') return this.aweOptionen[2];
-    return short ?? '';
+
+  const bestaetigt = window.confirm(
+    'Möchtest du dein Benutzerkonto wirklich dauerhaft löschen?'
+  );
+
+  if (!bestaetigt) {
+    return;
+  }
+
+  this.userService.deleteAccount(this.userId).subscribe({
+    next: () => {
+      this.authService.logout();
+      this.router.navigate(['/login']); //Erstmal loginseite kann später nach absprache geändert werden
+    },
+    error: () => {
+      this.errorMessage = 'Fehler beim Löschen des Benutzerkontos';
+    }
+  });
+}
+ 
+  private mapAweShortToText(short?: number): string {
+    if (short === 1) return this.aweOptionen[0];
+    if (short ===  2) return this.aweOptionen[1];
+    if (short ===  3) return this.aweOptionen[2];
+    return '';
   }
 }

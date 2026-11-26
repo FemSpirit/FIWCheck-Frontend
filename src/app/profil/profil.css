@@ -246,3 +246,21 @@
   font-weight: 600;
   font-size: 0.9rem;
 }
+
+.delete-account-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.btn-delete {
+  background-color: transparent;
+  color: #b91c1c;
+  border: 1.5px solid #b91c1c;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}

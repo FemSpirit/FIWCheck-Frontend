@@ -58,6 +58,12 @@ export class AuthService {
     this.loggedInChange.next(this.loggedIn);
     this.user = {username: '', password: '', email: '', role: ''};
     this.userChange.next(this.user);
+
+    // Gespeicherte Anmeldedaten entfernen
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user_id');
+  }
   }
 
   isAdmin(): boolean {
@@ -88,8 +94,8 @@ export class AuthService {
   
   updateStudieninformationen(daten: {
     stupoId: number;
-    startsemester: number;
-    aweVariante: string;
+    startsemester: string;
+    aweVariante: number;
   }): Observable<any> {
     return this.http.put(`${this.baseUrl}/studentprofil/studieninformationen`, daten, {
       headers: this.getAuthHeaders()
