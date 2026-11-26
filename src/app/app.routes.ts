@@ -38,5 +38,7 @@ export const routes: Routes = [
     {path: 'statistikstudi', component: Statistikstudi, canActivate: [authGuard]},
     {path: 'statistikprof', component: Statistikprof, canActivate: [authGuard]},
     {path: 'einstellungen', component: Einstellungen, canActivate: [authGuard]},
-    
+    {path: 'einstellungen', component: Einstellungen},
+    {path: 'moduldetails/:id', component: Moduldetails}
 ];
+
