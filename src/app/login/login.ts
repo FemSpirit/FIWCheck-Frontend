@@ -21,7 +21,7 @@ export class Login implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -52,17 +52,25 @@ export class Login implements OnInit {
     this.authService.loginUser(email, password).subscribe({
       // verarbeitet Server-Antwort
       next: (response: any) => {
+        console.log('Server-Antwort beim Login:', response);
         const token = response.body?.token;
         if (token) {
           localStorage.setItem('token', token);
-        }
+          // Login Status wird auf true gesetzt 
+          this.authService.login({
+            username: '',
+            email: email,
+            password: '',
+            role: ''
+            });
+          }
         // leitet auf Startseite weiter
         this.router.navigate(['/startseite']);
-      },
-      error: (error: any) => {
-        console.error('Login-Fehler:', error);
-        this.errorMessage = error.message || 'Login fehlgeschlagen.';
-      }
-    });
+        },
+        error: (error: any) => {
+          console.error('Login-Fehler:', error);
+          this.errorMessage = error.message || 'Login fehlgeschlagen.';
+        }
+      });
   }
 }

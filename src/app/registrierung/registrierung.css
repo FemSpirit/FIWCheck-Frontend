@@ -1,28 +1,58 @@
-.full-width {
-  width: 100%;
+/* NEU: äußere Box um die Karte (Rand, Hintergrund, Zentrierung) */
+.registrierung-container 
+{
+  display: flex;                    /* schaltet Flexbox ein: Kinder werden flexibel angeordnet */
+  justify-content: center;          /*  zentriert die Karte waagerecht  bleibt mittig, wenn die Seitenleiste ein- oder ausklappt */
+  align-items: flex-start;          /* setzt die Karte oben an die Boxverhindert, dass sie in die Höhe gestreckt wird */
+  padding: 24px 32px;               /* Innenabstand: 24px oben/unten, 32px links/rechts die 32px rechts sind dein gewünschter Rand */
+  background-color: #f9fae6;        /* Hintergrundfarbe wie in der Moduluebersicht */
+  min-height: 100%;                 /*  Box ist mindestens so hoch wie ihr Elternelement Hintergrundfarbe reicht möglichst weit nach unten */
+  box-sizing: border-box;           /* Padding zählt zur Gesamtbreite dazu  verhindert einen waagerechten Scrollbalken */
 }
 
-.registration-card {
-  min-width: 120px;
-  max-width: 80%;
-  margin: 2% auto auto auto; /* Zentriert die Karte etwas schöner auf dem Bildschirm */
+
+.registrierung-card 
+{
+  width: 100%;                      /* Karte nutzt so viel Breite wie möglich  schrumpft mit, wenn weniger Platz da ist */
+  max-width: 600px;                 /*  auf großen Bildschirmen nie breiter als 600px */                           
+  margin: 0 auto;                   /* 0 = kein Abstand oben/unten auto = Restplatz links/rechts gleich verteilt (zentriert) */
+  font-family: 'Nunito', sans-serif;
+}
+.registrierung-card ::ng-deep .mat-mdc-form-field,
+.registrierung-card ::ng-deep .mat-mdc-floating-label,
+.registrierung-card ::ng-deep .mat-mdc-input-element,
+.registrierung-card ::ng-deep .mat-mdc-select,
+.registrierung-card ::ng-deep .mat-mdc-form-field-error,
+.registrierung-card ::ng-deep .mat-mdc-card-title,
+.registrierung-card ::ng-deep .mat-mdc-button
+{
+  font-family: 'Nunito', sans-serif;
 }
 
-.mat-radio-button {
-  display: block;
-  margin: 5px 0;
+.full-width 
+{
+  width: 100%;                      /*  Element nimmt die volle Breite seines Elternelements ein   wird bei deinen Eingabefeldern genutzt */
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
+.mat-radio-button 
+{
+  display: block;                   /* jeder Radio-Button bekommt eine eigene Zeile */
+  margin: 5px 0;                    /* 5px Abstand oben/unten, 0 links/rechts */
 }
 
-.col {
-  flex: 1;
-  margin-right: 20px;
+.row 
+{
+  display: flex;                    /* schaltet Flexbox ein: Kinder liegen nebeneinander */
+  flex-direction: row;              /* Anordnung in einer Reihe (von links nach rechts) */
 }
 
-.col:last-child {
-  margin-right: 0;
+.col 
+{
+  flex: 1;                          /*  alle Spalten teilen sich den Platz gleichmäßig */
+  margin-right: 20px;               /* 20px Abstand zur nächsten Spalte rechts */
+}
+
+.col:last-child 
+{
+  margin-right: 0;                  /* die letzte Spalte bekommt keinen Abstand nach rechts :last-child = das letzte Element in einer Reihe */
 }

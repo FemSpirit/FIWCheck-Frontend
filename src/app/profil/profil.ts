@@ -57,10 +57,12 @@ export class Profil implements OnInit {
 
   showConfirmModal = false;
   saveSuccessMessage = '';
-  userService: any;
+  
 
   constructor(
     private authService: AuthService,
+    private userService: UserService, //hat gefehlt
+    
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 

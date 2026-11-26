@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject} from 'rxjs';
 import { User } from './user';
 import { environment } from '../../environments/environment';
 
@@ -14,7 +14,8 @@ export class AuthService {
   loggedIn = false;
   loggedInChange: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) 
+  {
     this.loggedInChange.subscribe((value) => {
       this.loggedIn = value;
     });
@@ -31,12 +32,13 @@ export class AuthService {
     return this.http.get<User>(this.baseUrl + '/users/' + username);
   }
 
-  registerUser(user: User): Observable<any> {
+  registerUser(user: User): Observable<any> 
+  {
     return this.http.post(this.baseUrl + '/user/register', user);
   }
 
   loginUser(email: string, password: string): Observable<any>{
-    return this.http.post(this.baseUrl + '/user/login', { email: email, password: password }, { observe: 'response' });
+    return this.http.post(this.baseUrl + '/login', { email: email, password: password }, { observe: 'response' });
   }
 
   isLoggedin(): boolean {

@@ -1,23 +1,24 @@
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogActions, MatDialogContent, MatDialogTitle, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import type { DialogData } from '../registrierung';
 
 @Component({
-  selector: 'app-confirm',
+  selector: 'app-confirm', /*hier auch nicht verwendet, öffnet sich über MatDialog.open */
   standalone: true,
   imports: [
     MatDialogTitle, 
     MatDialogContent, 
     MatDialogActions, 
-    MatDialogClose, 
     MatButtonModule,
   ],
   templateUrl: './confirm.component.html',
   styleUrl: './confirm.component.css'
 })
-export class ConfirmComponent {
-  data = inject(MAT_DIALOG_DATA);
+export class ConfirmComponent 
+{
+   data: DialogData = inject(MAT_DIALOG_DATA);
   private router = inject(Router);
   private dialogRef = inject(MatDialogRef<ConfirmComponent>);
 
