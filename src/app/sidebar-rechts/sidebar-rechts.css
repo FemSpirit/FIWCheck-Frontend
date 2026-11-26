@@ -1,0 +1,38 @@
+:host { display: block; height: 100vh; flex-shrink: 0; }
+
+.sidebar {
+  width: 305px;
+  height: 100%;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #C6E273;
+  color: #1e2418;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: width 0.3s ease, padding 0.3s ease;
+}
+
+.sidebar.collapsed { width: 80px; padding: 1.5rem 0.5rem; }
+
+.header { display: flex; justify-content: space-between; align-items: center; }
+.collapsed .header { justify-content: center; }
+
+.label-top { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; color: #566349; }
+
+.toggle { background: none; border: none; cursor: pointer; border-radius: 50%; padding: 4px; display: flex; }
+.toggle:hover { background: #9CCA44; }
+.toggle .material-icons { font-size: 32px; }
+
+.avatar { width: 132px; height: 132px; border-radius: 50%; object-fit: cover; background: #fff; align-self: center; }
+h2 { font-size: 1.5rem; font-weight: 800; text-align: center; margin: 0; }
+.intro { color: #4f5b43; line-height: 1.4; margin: 0; }
+
+.card { background: #fff; border-radius: 20px; padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.card span { font-size: 0.9rem; color: #4f5b43; }
+.card b { font-size: 1.75rem; font-weight: 800; text-align: center; }
+
+.bar { height: 10px; border-radius: 999px; background: #f7f9dc; overflow: hidden; }
+.bar div { height: 100%; background: #a9c45a; transition: width 0.3s ease; }

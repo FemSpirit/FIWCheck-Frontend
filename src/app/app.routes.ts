@@ -2,6 +2,7 @@ import { authGuard } from './auth-guard';
 import {Routes} from '@angular/router';
 import {SidebarComponent} from './sidebar/sidebar';
 import {Startseite } from './startseite/startseite';
+import {SidebarRechtsComponent} from './sidebar-rechts/sidebar-rechts';
 import {Profil} from './profil/profil';
 import {Semesterplan} from './semesterplan/semesterplan';
 import {Noten} from './noten/noten';
@@ -20,6 +21,7 @@ export const routes: Routes = [
      // oeffentliche Routen
     {path: '', component: Startseite},
     {path: 'sidebar', component: SidebarComponent},
+    {path: 'sidebar-rechts', component: SidebarRechtsComponent},
     {path: 'startseite', component: Startseite},
     {path: 'registrierungsformular', component: Registrierung},
     {path: 'login', component: Login},
@@ -36,5 +38,7 @@ export const routes: Routes = [
     {path: 'statistikstudi', component: Statistikstudi, canActivate: [authGuard]},
     {path: 'statistikprof', component: Statistikprof, canActivate: [authGuard]},
     {path: 'einstellungen', component: Einstellungen, canActivate: [authGuard]},
-    
+    {path: 'einstellungen', component: Einstellungen},
+    {path: 'moduldetails/:id', component: Moduldetails}
 ];
+
